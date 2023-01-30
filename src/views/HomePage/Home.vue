@@ -1,109 +1,81 @@
 <template>
-    <h1>Welcome to Home</h1>
+
+<head>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+	<title>Navbar + Parallax </title>
+</head>
+
+<body>
+	<header>
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+			<div class="container-fluid"> <a class="navbar-brand fw-bold" href="/">Home</a> <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
+				<div class="collapse navbar-collapse " id="navbarNav">
+					<ul class="navbar-nav d-flex justify-content-center w-100">
+						<li class="nav-item"> <a class="nav-link" href="../login/login.vue">Teacher</a> </li>
+						<li class="nav-item"> <a class="nav-link" href="../login/login.vue">Student</a> 
+            </li>
+						<!-- <li class="nav-item"> <a class="nav-link" href="#">Link3</a> </li> -->
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</header>
+	<div class="banner">
+		<h1>Welcome to Online Exam portal</h1>
+		<h2>subtitle</h2>
+    <router-link :to="{name:'signup'}">Hello</router-link>
+	</div>
+	<div class="content-area">
+		<!--Your content here-->
+	</div>
+	
+</body>
+
+
+
 </template>
 
-<!-- <style>
-    *{
-  box-sizing: border-box;
+
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Heebo:wght@300;800&display=swap");
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: "Heebo", sans-serif;
 }
-
-
 body {
-  background: #7e8393 !important;
-  min-height: 100vh;
-  display: flex;
-  font-weight: 400;
+	overflow-x: hidden;
+  background-image: url(https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80);
+}
+div.banner {
+	width: 100%;
+	min-height: 100vh;
+	/* background-image: url(https://cdn.wallpapersafari.com/33/7/ZmRcgk.jpg); */
+	background-position: center;
+	background-attachment: fixed;
+	background-size: cover;
+	background-repeat: no-repeat;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+div.banner > h1 {
+	font-size: 4.6em;
+	font-weight: 800;
+	color: #fff;
+	text-shadow: 4px 4px 30px rgba(0, 0, 0, 0.8);
+}
+div.banner > h2 {
+	color: #fff;
+	font-size: 1.8em;
+	letter-spacing: 2px;
 }
 
-body,
-html,
-.App,
-.vue-tempalte,
-.vertical-center {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-}
- 
-.navbar-light {
-  background-color: #ffffff;
-  box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
-}
- 
-.vertical-center {
-  display: flex;
-  text-align: left;
-  justify-content: center;
-  flex-direction: column;    
-}
- 
-.inner-block {
-  width: 450px;
-  margin: auto;
-  background: #ffffff;
-  box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
-  padding: 40px 55px 45px 55px;
-  border-radius: 15px;
-  transition: all .3s;
-}
- 
-.vertical-center .form-control:focus {
-  border-color: #2554FF;
-  box-shadow: none;
-}
- 
-.vertical-center h3 {
-  text-align: center;
-  margin: 0;
-  line-height: 1;
-  padding-bottom: 20px;
-}
- 
-label {
-  font-weight: 500;
-}
- 
-.forgot-password,
-.forgot-password a {
-  text-align: right;
-  font-size: 13px;
-  padding-top: 10px;
-  color: #7a7a7a;
-  margin: 0;
-}
- 
-.forgot-password a {
-  color: #2554FF;
-}
- 
-.social-icons {
-  text-align: center;
-  font-family: "Open Sans";
-  font-weight: 300;
-  font-size: 1.5em;
-  color: #222222;
-}
- 
-.social-icons ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-.social-icons ul li {
-  display: inline-block;
-  zoom: 1;
-  width: 65px;
-  vertical-align: middle;
-  border: 1px solid #e3e8f9;
-  font-size: 15px;
-  height: 40px;
-  line-height: 40px;
-  margin-right: 5px;
-  background: #f4f6ff;
+div.content-area {
+	width: 100%;
+	min-height: 100vh;
 }
 
-.btn{
-  margin-top: 7px;
-}
-</style> -->
+</style>

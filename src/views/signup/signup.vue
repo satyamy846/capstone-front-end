@@ -76,7 +76,7 @@
               //   this.errors.push("First Name is required")
               // }
 
-              let result = await axios.post("http://localhost:5000/student",{
+              let result = await axios.post("http://localhost:5000/user",{
               firstname :this.first_name,
               lastname: this.last_name,
               email: this.email,
