@@ -9,35 +9,64 @@ const router = createRouter({
       component: ()=>import('../views/HomePage/Home.vue')
     },
     {
-      path: '/signup',
-      name: 'signup',
-      component: ()=> import('../views/signup/signup.vue')
-    },
-    {
-      path:'/login',
-      name:'login',
-      component: ()=>import('../views/login/Login.vue')
-    },
-    {
-      path:'/forgot-password',
-      name:'password',
-      component: ()=>import('../views/forgotpassword/forgotPassword.vue')
-    },
-    {
-      path:'/home-page',
-      name:'homePage',
-      component: ()=>import('../views/HomePage/Home.vue')
-    },
-    {
-      path:'/teacher',
-      name:'dashboard',
-      component:()=>import('../views/dashboard/Teacherdashboard.vue')
-    },
-    {
-      path:'/student',
-      name:'student',
-      component: ()=>import('../views/dashboard/Studentdashboard.vue')
+      //student components
+      path: '/students',
+      name:"student",
+      children: [
+        {
+          path:'/students/signup',
+          name:'signup',
+          component:()=>import('../views/signup/Studentsignup.vue')
+        },
+        {
+          path:'/students/login',
+          name:'login',
+          component:()=>import('../views/login/Studentlogin.vue')
+        },
+        {
+          
+          path:'/students/forgot-password',
+          name:'login',
+          component:()=>import('../views/forgotpassword/Studentforgot.vue')
+        
+      },
+        {
+          path:'/students/dashboard',
+          name:'login',
+          component:()=>import('../views/dashboard/Studentdashboard.vue')
+        }
 
+      ]
+    },
+    //teacher components
+    {
+      path: '/teacher',
+      name:"teacher",
+      children: [
+        {
+          path:'/teacher/signup',
+          name:'signup',
+          component:()=>import('../views/signup/Teachersignup.vue')
+        },
+        {
+          path:'/teacher/login',
+          name:'login',
+          component:()=>import('../views/login/Teacherlogin.vue')
+        },
+        {
+          
+            path:'/teacher/forgot-password',
+            name:'login',
+            component:()=>import('../views/forgotpassword/Teacherforgot.vue')
+          
+        },
+        {
+          path:'/teacher/dashboard',
+          name:'login',
+          component:()=>import('../views/dashboard/Teacherdashboard.vue')
+        }
+
+      ]
     }
   ]
 })
