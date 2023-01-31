@@ -1,142 +1,40 @@
-<!-- <template src="./login.html"></template>
-<script src="./login.js"></script>
-<style src="./login.scss" scoped lang="scss"></style> -->
-
-
 <template>
-<div class="vue-tempalte">
-    <form>
-        <h3>Sign In</h3>
+  <mynavbar />
+  <v-row justify="center">
+    <v-col cols="12" sm="10" md="8" lg="6">
+      <v-card class="mx-auto my-12" max-width="450" ref="form">
+        <v-card-text>
+          <v-text-field ref="email" label="Email" placeholder="Your Email" type="email" required></v-text-field>
+          <v-text-field ref="email" label="Passward" placeholder="Your Password" type="password"
+            required></v-text-field>
 
-        <div class="form-group">
-            <label>Email address</label>
-            <input type="email" class="form-control form-control-lg" />
-        </div>
+        </v-card-text>
+        <v-divider class="mt-2"></v-divider>
+        <v-card-actions>
+          <v-card-text>
+            <p>Haven't register?</p>
+            <span>Sign Up Link</span>
+          </v-card-text>
+          <v-spacer></v-spacer>
 
-        <div class="form-group">
-            <label>Password</label>
-            <input type="password" class="form-control form-control-lg" />
-        </div>
+          <v-btn color="primary" depressed @click="submit">
+            SignIn
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-col>
+  </v-row>
 
-        <button type="submit" class="btn btn-dark btn-lg btn-block">Sign In</button>
-
-        <p class="forgot-password text-right mt-2 mb-4">
-            <router-link to="/forgot-password">Forgot password ?</router-link>
-        </p>
-
-        <div class="social-icons">
-            <ul>
-                <li><a href="#"><i class="fa fa-google"></i></a></li>
-                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-            </ul>
-        </div>
-    </form>
-  </div>
 </template>
 
-<style>
-    *{
-  box-sizing: border-box;
+<script>
+import mynavbar from '../../components/navbar/Homenavbar.vue';
+export default {
+  name: 'SignUp',
+  components: {
+    mynavbar
+  }
 }
+</script>
 
 
-body {
-  background: #7e8393 !important;
-  min-height: 100vh;
-  display: flex;
-  font-weight: 400;
-}
-
-body,
-html,
-.App,
-.vue-tempalte,
-.vertical-center {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-}
- 
-.navbar-light {
-  background-color: #ffffff;
-  box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
-}
- 
-.vertical-center {
-  display: flex;
-  text-align: left;
-  justify-content: center;
-  flex-direction: column;    
-}
- 
-.inner-block {
-  width: 450px;
-  margin: auto;
-  background: #ffffff;
-  box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
-  padding: 40px 55px 45px 55px;
-  border-radius: 15px;
-  transition: all .3s;
-}
- 
-.vertical-center .form-control:focus {
-  border-color: #2554FF;
-  box-shadow: none;
-}
- 
-.vertical-center h3 {
-  text-align: center;
-  margin: 0;
-  line-height: 1;
-  padding-bottom: 20px;
-}
- 
-label {
-  font-weight: 500;
-}
- 
-.forgot-password,
-.forgot-password a {
-  text-align: right;
-  font-size: 13px;
-  padding-top: 10px;
-  color: #7a7a7a;
-  margin: 0;
-}
- 
-.forgot-password a {
-  color: #2554FF;
-}
- 
-.social-icons {
-  text-align: center;
-  font-family: "Open Sans";
-  font-weight: 300;
-  font-size: 1.5em;
-  color: #222222;
-}
- 
-.social-icons ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-.social-icons ul li {
-  display: inline-block;
-  zoom: 1;
-  width: 65px;
-  vertical-align: middle;
-  border: 1px solid #e3e8f9;
-  font-size: 15px;
-  height: 40px;
-  line-height: 40px;
-  margin-right: 5px;
-  background: #f4f6ff;
-}
-
-.btn{
-  margin-top: 7px;
-}
-</style>

@@ -1,45 +1,41 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
-import navbar from './components/navbar/navbar.vue';
+import navbar from './components/navbar/Homenavbar.vue';
 
 </script>
 
 
 
- <template> 
+<template>
+  <!-- App.vue -->
 
-<!-- <div class="vue-tempalte"> -->
-    <!-- Navigation -->
-    <!-- <nav class="navbar shadow bg-white rounded justify-content-between flex-nowrap flex-row fixed-top">
-      <div class="container">
-        <a class="navbar-brand float-left" href="/">
-           ExamPortal
-        </a>
-        <ul class="nav navbar-nav flex-row float-right">
-          <li class="nav-item">
-            <router-link class="nav-link pr-3" to="/login">Sign in</router-link>
-          </li>
-          <li class="nav-item">
-            <router-link class="btn btn-outline-primary" to="/signup">Sign up</router-link>
-          </li>
+<v-app>
+  <v-navigation-drawer app>
+    <!-- -->
+  </v-navigation-drawer>
 
-        </ul>
-      </div>
-    </nav> -->
-    <!-- <navbar/> -->
-    
-    <!-- Main -->
-    <div class="App">
-      <div class="vertical-center">
-        <div class="inner-block">
-          <router-view />
-        </div>
-      </div>
-    </div>
-  <!-- </div> -->
+  <v-app-bar app>
+    <!-- -->
+  </v-app-bar>
+
+  <!-- Sizes your content based upon application components -->
+  <v-main>
+
+    <!-- Provides the application the proper gutter -->
+    <v-container fluid>
+
+      <!-- If using vue-router -->
+      <router-view></router-view>
+    </v-container>
+  </v-main>
+
+  <v-footer app>
+    <!-- -->
+  </v-footer>
+</v-app>
 </template>
 
-<style scoped>
+<!-- <style scoped>
 header {
   line-height: 1.5;
   max-height: 100vh;
@@ -101,4 +97,4 @@ nav a:first-of-type {
     margin-top: 1rem;
   }
 }
-</style> 
+</style>  -->
