@@ -10,7 +10,7 @@
 
                 
                 <router-link style="text-decoration: none; color: inherit;" to="/teacher/signup" tag="v-btn"><v-btn>Teacher</v-btn></router-link>
-                <router-link style="text-decoration: none; color: inherit;" to="/students/login" tag="v-btn"><v-btn>Student</v-btn></router-link>
+                <router-link style="text-decoration: none; color: inherit;" to="/student/dashboard" tag="v-btn"><v-btn>Student</v-btn></router-link>
                 <!-- <v-navigation-drawer v-model="drawer" absolute bottom temporary class="indigo">
                     <p>ell</p>
                 </v-navigation-drawer> -->

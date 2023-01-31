@@ -49,7 +49,7 @@
 <script>
 import mynavbar from '../../components/navbar/Homenavbar.vue';
     export default{
-        name:'SignUp',
+        name:'register',
         components: {
             mynavbar
         }

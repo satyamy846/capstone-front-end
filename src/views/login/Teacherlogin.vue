@@ -27,7 +27,7 @@
   
   </template>
   
-  <script>
+  <script >
   import mynavbar from '../../components/navbar/Homenavbar.vue';
   export default {
     name: 'SignUp',

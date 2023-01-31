@@ -3,8 +3,8 @@
     <sidebar />
     <v-app>
 
-        <v-card >
-            <v-card height="600" width="900" class="mx-auto">
+        <v-card left>
+            <v-card height="600" width="900" >
 
                 <v-list-item>
                     <v-list-item-content>

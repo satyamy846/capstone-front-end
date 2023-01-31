@@ -10,29 +10,29 @@ const router = createRouter({
     },
     {
       //student components
-      path: '/students',
+      path: '/student',
       name:"student",
       children: [
         {
-          path:'/students/signup',
+          path:'/student/register',
           name:'signup',
-          component:()=>import('../views/signup/Studentsignup.vue')
+          component:()=>import('../views/signup/studentSignup.vue')
         },
         {
-          path:'/students/login',
+          path:'/student/login',
           name:'login',
           component:()=>import('../views/login/Studentlogin.vue')
         },
         {
           
-          path:'/students/forgot-password',
-          name:'login',
+          path:'/student/forgot-password',
+          name:'forgotPassword',
           component:()=>import('../views/forgotpassword/Studentforgot.vue')
         
       },
         {
-          path:'/students/dashboard',
-          name:'login',
+          path:'/student/dashboard',
+          name:'dashboard',
           component:()=>import('../views/dashboard/Studentdashboard.vue')
         }
 
