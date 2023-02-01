@@ -5,7 +5,7 @@
 
             <v-row justify="center">
                 <v-col cols="12" sm="10" md="8" lg="6">
-                    <v-card class="mx-auto my-12" max-width="500" ref="form">
+                    <v-card class="mx-auto my-12 mt-0" max-width="500" ref="form" >
                         <v-card-text>
                             <v-card-title>Faculty Register</v-card-title>
                             <v-text-field ref="name" label="First Name" placeholder="Enter Your First Name" required
@@ -25,13 +25,14 @@
 
                             <v-text-field ref="name" label="Contact" placeholder="Contact Number" required
                                 v-model="contact"></v-text-field>
-
+                                <v-spacer></v-spacer>
                             <v-btn rounded color="primary" @click="postuser" dark>
                                 Register
                             </v-btn>
-                            <!-- <v-btn @click="getuser">
-                                Mine
-                            </v-btn> -->
+                            <v-spacer></v-spacer>
+                            <p >Already registered?</p>
+                            <router-link style="text-decoration: none; color: inherit;" :to="{name:'teacherlogin'}" tag="btn-primary">Sign in</router-link>
+                            <v-spacer></v-spacer>
 
                         </v-card-text>
 

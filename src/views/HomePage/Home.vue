@@ -15,8 +15,7 @@ import mynavbar from '../../components/navbar/Homenavbar.vue';
 <body>
 	<div class="banner">
 		<h1>Welcome to Online Exam portal</h1>
-		<h2>subtitle</h2>
-    <router-link :to="{name:'signup'}">Hello</router-link>
+    <!-- <router-link :to="{name:'signup'}">Hello</router-link> -->
 	</div>
 	<div class="content-area">
 		<!--Your content here-->

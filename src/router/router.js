@@ -1,13 +1,14 @@
 import { createRouter, createWebHistory } from 'vue-router';
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHistory(import.meta.env.BASE_URL),  //it created the history so that we can jump back to previous page
   routes: [
     {
       path:'/',
       name:'home',
       component: ()=>import('../views/HomePage/Home.vue')
     },
+    
     {
       //student components
       path: '/student',
@@ -15,24 +16,24 @@ const router = createRouter({
       children: [
         {
           path:'/student/register',
-          name:'signup',
+          name:'studentsignup',
           component:()=>import('../views/signup/studentSignup.vue')
         },
         {
           path:'/student/login',
-          name:'login',
+          name:'studentlogin',
           component:()=>import('../views/login/Studentlogin.vue')
         },
         {
           
           path:'/student/forgot-password',
-          name:'forgotPassword',
+          name:'studentforgotpassword',
           component:()=>import('../views/forgotpassword/Studentforgot.vue')
         
       },
         {
           path:'/student/dashboard',
-          name:'dashboard',
+          name:'studentdashboard',
           component:()=>import('../views/dashboard/Studentdashboard.vue')
         }
 
@@ -45,29 +46,38 @@ const router = createRouter({
       children: [
         {
           path:'/teacher/signup',
-          name:'signup',
+          name:'teachersignup',
           component:()=>import('../views/signup/Teachersignup.vue')
         },
         {
           path:'/teacher/login',
-          name:'login',
+          name:'teacherlogin',
           component:()=>import('../views/login/Teacherlogin.vue')
         },
         {
           
             path:'/teacher/forgot-password',
-            name:'login',
+            name:'teacherforgotpassword',
             component:()=>import('../views/forgotpassword/Teacherforgot.vue')
           
         },
         {
           path:'/teacher/dashboard',
-          name:'login',
+          name:'teacherdashboard',
           component:()=>import('../views/dashboard/Teacherdashboard.vue')
+        },
+        {
+          path:'/student/dashboard',
+          redirect:'/student/login'
         }
 
       ]
-    }
+    },
+    {
+      path: '/:pathMatch(.*)*',
+      name:'404error',
+      component: ()=>import('../components/Notfound.vue')
+    },
   ]
 })
 

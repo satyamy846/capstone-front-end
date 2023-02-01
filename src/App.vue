@@ -25,7 +25,7 @@ import navbar from './components/navbar/Homenavbar.vue';
     <v-container fluid>
 
       <!-- If using vue-router -->
-      <router-view></router-view>
+      <router-view></router-view> <!--with this tag all the components dynamically injected to the htmml page we mounted earlier-->
     </v-container>
   </v-main>
 
