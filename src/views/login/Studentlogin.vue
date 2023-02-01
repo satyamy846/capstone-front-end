@@ -15,12 +15,13 @@
             <v-card-text>
               
               <p>Haven't register?</p>
-              <router-link style="text-decoration: none; color: inherit;" :to="{name:'studentsignup'}" tag="v-btn">Sign up</router-link>
+              <v-spacer></v-spacer>
+              <router-link style="text-decoration: none; color: inherit;" :to="{name:'studentsignup'}" tag="v-btn"><v-btn color="primary">Sign up</v-btn></router-link>
             </v-card-text>
+           
             <v-spacer></v-spacer>
-  
-            <p>Haven't register?</p>
-            <router-link style="text-decoration: none; color: inherit;" :to="{name:'studentforgotpassword'}" tag="v-btn">Forgot password</router-link>
+            <p>Forgot password</p>
+            <router-link style="text-decoration: none; color: inherit;" :to="{name:'studentforgotpassword'}" tag="v-btn"><v-btn color="primary">Forgot password</v-btn></router-link>
           </v-card-actions>
         </v-card>
       </v-col>
