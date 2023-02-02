@@ -1,72 +1,73 @@
 <template>
-    <mynavbar/>
-    
-    <v-card max-width="1000" class="mx-auto mt-5">
+    <mynavbar />
+    <v-btn color="primary" @click="getquiz">Quiz</v-btn>
+    <v-card max-width="1000"  class="mx-auto mt-5">
 
-
-        <v-container fluid>
-            <v-row>
-                <v-col >
-                    <v-card  height="290px" width="200px">
-                        <v-img src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg" height="100px" cover></v-img>
-                        <v-card-item>
-                            <v-card-title>
-                                Aptitude
-                            </v-card-title>
-                            <v-card-subtitle>
-                                Attempt in one go
-                            </v-card-subtitle>
-                        </v-card-item>
-                        <v-card-text variant="outlined">Lorem ipsum, dolor sit amt hjgjgjg j hfyr7fytfhf
-                        </v-card-text>
-                        <v-btn variant="text" color="teal-accent-4" @click="reveal = false">Play</v-btn>
-                    </v-card>
-                    <v-spacer></v-spacer>
-                    <v-card height="290px" width="200px">
-                        <v-img src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg" height="100px" cover></v-img>
-                        <v-card-item>
-                            <v-card-title>
-                                Reasoning
-                            </v-card-title>
-                            <v-card-subtitle>
-                                Attempt in one go
-                            </v-card-subtitle>
-                        </v-card-item>
-                        <v-card-text variant="outlined">Lorem ipsum, dolor sit amt hjgjgjg j hfyr7fytfhf
-                        </v-card-text>
-                        <v-btn variant="text" color="teal-accent-4" @click="reveal = false">Play</v-btn>
-                    </v-card>
-                    <v-card height="290px" width="200px">
-                        <v-img src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg" height="100px" cover></v-img>
-                        <v-card-item>
-                            <v-card-title>
-                                Programming
-                            </v-card-title>
-                            <v-card-subtitle>
-                                Attempt in one go
-                            </v-card-subtitle>
-                        </v-card-item>
-                        <v-card-text variant="outlined">Lorem ipsum, dolor sit amt hjgjgjg j hfyr7fytfhf
-                        </v-card-text>
-                        <v-btn variant="text" color="teal-accent-4" @click="reveal = false">Play</v-btn>
-                    </v-card>
-                </v-col>
-            </v-row>
-
-        </v-container>
+        
+        <!-- <v-btn color="primary" @click="getquestions()"><router-link style="text-decoration: none; color: inherit;" :to="{name:'studentquestions'}" tag="btn-primary">questions</router-link></v-btn> -->
+        <v-card class="d-inline-block ma-6" v-for="item in values" :key="item._id" height="290px" width="200px">
+            <v-img src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg" height="100px" cover></v-img>
+            <v-card-item>
+                <v-card-title>
+                    {{ item.title }}
+                </v-card-title>
+                <v-card-subtitle>
+                    Attempt in one go
+                </v-card-subtitle>
+            </v-card-item>
+            <v-card-text variant="outlined">{{ item.description }}
+            </v-card-text>
+            <v-btn @click="getquestions" variant="text" color="teal-accent-4"> <router-link
+                    style="text-decoration: none; color: inherit;" :to="{ name: 'studentquestions' }"
+                    tag="btn-primary">Start</router-link></v-btn>
+        </v-card>
     </v-card>
 </template>
 
 <script>
+import axios from 'axios';
 import mynavbar from '../../components/navbar/Homenavbar.vue';
 export default {
     name: 'student',
     components: {
         mynavbar,
     },
-    data: () => ({
-        reveal: false,
-    }),
+    //child component
+    data() {
+        return {
+            values: [],
+
+        }
+    },
+    props: {
+        questions: Array
+    },
+    methods: {
+        async getquiz() {
+            const quizdetails = await axios.get('http://localhost:5000/get-quiz');
+            // console.log(quizdetails);
+            // console.log(quizdetails.data.data);
+            this.values = quizdetails.data.data;
+            // value.forEach((item,index )=>{
+            //     const detail1 = item.title;
+            //     const detail2 = item.description;
+            //     console.log(`${item.title} ${item.description}`,index);
+            //     return detail1;
+            // })
+            // return value;
+            // console.log(this.values);
+        },
+        async getquestions() {
+            const questions = await axios.get("http://localhost:5000/get-questions");
+            // this.values = questions.data.data;
+            // console.log(data);
+            // data.forEach((item)=>{
+            //     console.log(item.title)
+            // })
+
+        },
+
+    }
 }
 </script>
 

@@ -1,40 +1,63 @@
 <template>
     <mynavbar />
-    <sidebar />
-    <v-app>
+    <!-- <sidebar /> -->
+    <v-card height="400" width="256" class="d-inline-block left">
 
-        <v-card left>
-            <v-card height="600" width="900" >
+        <v-list-item>
+            <v-list-item-content>
+                <v-list-item-title class="text-h6">
+                    Dashboard
+                </v-list-item-title>
+            </v-list-item-content>
+        </v-list-item>
 
-                <v-list-item>
-                    <v-list-item-content>
-                        <v-list-item-title class="text-h6">
-                            Menu
-                        </v-list-item-title>
-                        <!-- <v-list-item-subtitle>
+        <v-divider></v-divider>
+
+        <v-list dense nav>
+            <v-list-item v-for="item in items" :key="item.title" router :to="item.route">
+                <v-list-item-icon>
+                    <v-icon>{{ item.icon }}</v-icon>
+                </v-list-item-icon>
+
+                <v-list-item-content>
+                    <v-list-item-title>{{ item.title }}</v-list-item-title>
+                </v-list-item-content>
+
+            </v-list-item>
+
+        </v-list>
+    </v-card>
+
+    <v-card class="d-inline-block" left height="600" width="900">
+
+        <v-list-item>
+            <v-list-item-content>
+                <v-list-item-title class="text-h6">
+                    Details
+                </v-list-item-title>
+                <!-- <v-list-item-subtitle>
                     subtext
                 </v-list-item-subtitle> -->
-                    </v-list-item-content>
-                </v-list-item>
+            </v-list-item-content>
+        </v-list-item>
 
-                <v-divider></v-divider>
+        <v-divider></v-divider>
 
-                <v-list dense nav>
-                    <v-list-item v-for="item in items" :key="item.title" link>
-                        <v-list-item-icon>
-                            <v-icon>{{ item.icon }}</v-icon>
-                        </v-list-item-icon>
+        <v-list dense nav>
+            <v-list-item v-for="item in items" :key="item.title" link>
+                <v-list-item-icon>
+                    <v-icon>{{ item.icon }}</v-icon>
+                </v-list-item-icon>
 
-                        <v-list-item-content>
-                            <v-list-item-title>{{ item.title }}</v-list-item-title>
-                        </v-list-item-content>
+                <v-list-item-content>
+                    <v-list-item-title>{{ item.title }}</v-list-item-title>
+                </v-list-item-content>
 
-                    </v-list-item>
-                </v-list>
-            </v-card>
-        </v-card>
+            </v-list-item>
+        </v-list>
+    </v-card>
 
-    </v-app>
+
 
     <!-- <v-row justify="center">
         <v-col cols="12" sm="10" md="8" lg="6">

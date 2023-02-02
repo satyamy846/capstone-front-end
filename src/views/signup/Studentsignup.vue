@@ -26,7 +26,7 @@
                             <v-text-field ref="name" label="Contact" placeholder="Contact Number" required
                                 v-model="contact"></v-text-field>
                             
-                            <v-btn rounded color="primary" @click="postuser" dark>
+                            <v-btn rounded color="primary" @click="studentRegistration" dark>
                                 Register
                             </v-btn>
                             <v-spacer></v-spacer>
@@ -48,11 +48,45 @@
 </template>
 
 <script>
+import axios from 'axios';
+import swal from 'sweetalert';
 import mynavbar from '../../components/navbar/Homenavbar.vue';
     export default{
         name:'register',
         components: {
             mynavbar
+        },
+        data() {
+        return {
+            first_name: '',
+            last_name: '',
+            email: '',
+            password: '',
+            contact: '',
+            }   
+        },
+        methods:{
+            async studentRegistration(){
+                try{
+                    const details = await axios.post("http://localhost:5000/student",{
+                    firstname:this.first_name,
+                    lastname: this.last_name,
+                    email: this.email,
+                    password: this.password,
+                    contact: this.contact
+                    })
+                    console.log(details);
+                    swal("Successfully Registered", "success");
+                    await this.$router.push({name:"studentlogin"});
+
+                }
+                catch(err){
+                    console.log(err);
+                }
+                
+
+            }
         }
     }
+    
 </script>

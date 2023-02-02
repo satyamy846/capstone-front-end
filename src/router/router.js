@@ -34,7 +34,18 @@ const router = createRouter({
         {
           path:'/student/dashboard',
           name:'studentdashboard',
-          component:()=>import('../views/dashboard/Studentdashboard.vue')
+          children:[
+            {
+              path:'/student/dashboard/quiz',
+              name:'studentquiz',
+              component:()=>import('../views/dashboard/Studentdashboard.vue')
+            },
+            {
+              path:'/student/dashboard/quiz/questions',
+              name:'studentquestions',
+              component:()=>import('../views/dashboard/questions.vue')
+            }
+          ]
         }
 
       ]

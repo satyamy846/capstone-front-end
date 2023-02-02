@@ -13,7 +13,7 @@
           <v-divider class="mt-2"></v-divider>
           <v-card-actions>
             <v-card-text>
-              
+              <v-btn depressed  color="success">Sign In</v-btn>
               <p>Haven't register?</p>
               <v-spacer></v-spacer>
               <router-link style="text-decoration: none; color: inherit;" :to="{name:'studentsignup'}" tag="v-btn"><v-btn color="primary">Sign up</v-btn></router-link>
@@ -26,7 +26,7 @@
         </v-card>
       </v-col>
     </v-row>
-  
+    <!-- {{ $store.state.email }} -->
   </template>
   
   <script>
@@ -35,7 +35,24 @@
     name: 'SignUp',
     components: {
       mynavbar
-    }
+    },
+    // data(){
+    //   return{
+    //     email:'',
+    //     password:''
+    //   }
+    // },
+    // methods:{
+    //   async login(event){
+    //     try{
+    //       event.preventDefault();
+    //       this.$store.state.commit('login',this.form.email);
+    //     }
+    //     catch(err){
+    //       console.log(err);
+    //     }
+    //   }
+    // }
   }
   </script>
   

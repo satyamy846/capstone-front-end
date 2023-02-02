@@ -9,32 +9,41 @@ import navbar from './components/navbar/Homenavbar.vue';
 <template>
   <!-- App.vue -->
 
-<v-app>
+<!-- <v-app>
   <v-navigation-drawer app>
-    <!-- -->
   </v-navigation-drawer>
 
   <v-app-bar app>
-    <!-- -->
   </v-app-bar>
 
-  <!-- Sizes your content based upon application components -->
+  Sizes your content based upon application components
   <v-main>
 
-    <!-- Provides the application the proper gutter -->
+    Provides the application the proper gutter
     <v-container fluid>
 
-      <!-- If using vue-router -->
-      <router-view></router-view> <!--with this tag all the components dynamically injected to the htmml page we mounted earlier-->
+      If using vue-router
+      <router-view></router-view> with this tag all the components dynamically injected to the htmml page we mounted earlier
     </v-container>
   </v-main>
 
   <v-footer app>
-    <!-- -->
   </v-footer>
-</v-app>
+</v-app> -->
+<!-- <router-view></router-view>  -->
+<router-view/>
 </template>
 
+
+<!-- <script>
+import store from './store/store';
+  export default{
+
+    // mounted(){
+    //   this.$store.initialize
+    // }
+  }
+</script> -->
 <!-- <style scoped>
 header {
   line-height: 1.5;

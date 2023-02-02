@@ -1,15 +1,11 @@
 <template>
 
-    <v-app>
-        <v-container class="mx-auto">
-            <v-row left>
-                <v-col cols="12" sm="10" md="8" lg="6">
-                    <v-card height="400" width="256" class="mx-auto">
+                    <v-card height="400" width="256" class="d-inline-block left">
 
                         <v-list-item>
                             <v-list-item-content>
                                 <v-list-item-title class="text-h6">
-                                    Menu
+                                    Dashboard
                                 </v-list-item-title>
                             </v-list-item-content>
                         </v-list-item>
@@ -30,13 +26,6 @@
                             
                         </v-list>
                     </v-card>
-                </v-col>
-            </v-row>
-        </v-container>
-
-
-
-    </v-app>
 </template>
 
 <script>
