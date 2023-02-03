@@ -77,10 +77,30 @@ const router = createRouter({
           name:'teacherdashboard',
           component:()=>import('../views/dashboard/Teacherdashboard.vue')
         },
+        // {
+        //   path:'/student/dashboard',
+        //   redirect:'/student/login'
+        // },
         {
-          path:'/student/dashboard',
-          redirect:'/student/login'
-        }
+          path:'/teacher/dashboard/profile',
+          name:'profile',
+          component:()=>import('../views/dashboard/profile.vue')
+        },
+        {
+          path:'/teacher/dashboard/profile',
+          name:'profile',
+          component:()=>import('../views/dashboard/profile.vue')
+        },
+        {
+          path:'/teacher/dashboard/addquiz',
+          name:'addquiz',
+          component:()=>import('../views/dashboard/addquiz.vue')
+        },
+        {
+          path:'/teacher/dashboard/quiz',
+          name:'quiz',
+          component:()=>import('../views/dashboard/quiz.vue')
+        },
 
       ]
     },

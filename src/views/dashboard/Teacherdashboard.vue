@@ -1,7 +1,7 @@
 <template>
     <mynavbar />
     <!-- <sidebar /> -->
-    <v-card height="400" width="256" class="d-inline-block left">
+    <!-- <v-card height="400" width="256" class="d-inline-block left">
 
         <v-list-item>
             <v-list-item-content>
@@ -26,14 +26,14 @@
             </v-list-item>
 
         </v-list>
-    </v-card>
+    </v-card> -->
 
-    <v-card class="d-inline-block" left height="600" width="900">
+    <v-card class="d-inline-block" left height="400" width="256">
 
         <v-list-item>
             <v-list-item-content>
                 <v-list-item-title class="text-h6">
-                    Details
+                    Dashboard
                 </v-list-item-title>
                 <!-- <v-list-item-subtitle>
                     subtext
@@ -44,7 +44,7 @@
         <v-divider></v-divider>
 
         <v-list dense nav>
-            <v-list-item v-for="item in items" :key="item.title" link>
+            <v-list-item v-for="item in items" :key="item.title" link  :to="item.route">
                 <v-list-item-icon>
                     <v-icon>{{ item.icon }}</v-icon>
                 </v-list-item-icon>
@@ -52,8 +52,11 @@
                 <v-list-item-content>
                     <v-list-item-title>{{ item.title }}</v-list-item-title>
                 </v-list-item-content>
+                
 
             </v-list-item>
+            
+            
         </v-list>
     </v-card>
 
@@ -129,11 +132,11 @@ export default {
     data() {
         return {
             items: [
-                { title: 'Home', icon: 'mdi-home-account' },
-                { title: 'Profile', icon: 'mdi-account' },
-                { title: 'Quizes', icon: 'mdi-folder-question' },
-                { title: 'Add Quizes', icon: 'mdi-plus-circle' },
-                { title: 'Logout', icon: 'mdi-logout' },
+                { title: 'Home', icon: 'mdi-home-account',route:'' },
+                { title: 'Profile', icon: 'mdi-account' ,route:'/teacher/dashboard/profile'},
+                { title: 'Quizes', icon: 'mdi-folder-question', route:'/teacher/dashboard/quiz' },
+                { title: 'Add Quizes', icon: 'mdi-plus-circle',route:'/teacher/dashboard/profile' },
+                { title: 'Logout', icon: 'mdi-logout', route:'/teacher/login' },
             ],
             right: null,
         }

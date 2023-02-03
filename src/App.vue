@@ -35,6 +35,7 @@ import navbar from './components/navbar/Homenavbar.vue';
 </template>
 
 
+
 <!-- <script>
 import store from './store/store';
   export default{
@@ -44,6 +45,8 @@ import store from './store/store';
     // }
   }
 </script> -->
+
+
 <!-- <style scoped>
 header {
   line-height: 1.5;

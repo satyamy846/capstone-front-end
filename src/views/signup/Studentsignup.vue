@@ -68,6 +68,7 @@ import mynavbar from '../../components/navbar/Homenavbar.vue';
         methods:{
             async studentRegistration(){
                 try{
+                    console.log(this.email,this.password);
                     const details = await axios.post("http://localhost:5000/student",{
                     firstname:this.first_name,
                     lastname: this.last_name,
@@ -78,6 +79,7 @@ import mynavbar from '../../components/navbar/Homenavbar.vue';
                     console.log(details);
                     swal("Successfully Registered", "success");
                     await this.$router.push({name:"studentlogin"});
+                    
 
                 }
                 catch(err){
