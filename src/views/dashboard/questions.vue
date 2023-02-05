@@ -1,85 +1,20 @@
 <template>
     <mynavbar />
 
-    <!-- <p>Hello</p> -->
-    <!-- <Studentdashboard :questions="getquestions"/> -->
-    <!-- <h1 v-for="item in values" :key="item._id">{{ item.content }}</h1> -->
-    <!-- <v-btn color="primary" @click="getquestions">click</v-btn> -->
-    <!-- <v-btn variant="text" color="teal-accent-4" > <router-link style="text-decoration: none; color: inherit;" :to="{name:'studentquiz'}" tag="btn-primary">back</router-link></v-btn> -->
-    <!-- <v-card center height="800px" width="800px">
-        <v-container fluid>
-            <v-radio-group v-model="radios">
-                <template v-slot:label>
-                    <div>Your favourite search engine</div>
-                </template>
-                <v-radio value="Google">
-                    <template v-slot:label>
-                        <div>Of course it's Google</div>
-                    </template>
-                </v-radio>
-                <v-radio value="Duckduckgo">
-                    <template v-slot:label>
-                        <div>Chat GPT</div>
-                    </template>
-                </v-radio>
+    <v-card class="mx-auto mt-5" width="800">
+        <v-card-item v-for="item in qzarray" :key="item._id">
+            <v-card-title class="ma-3">{{ item.title }}</v-card-title>
+            <hr>
+            <v-card-sub-title class="ma-3">{{ item.content }}</v-card-sub-title>
+            <v-radio-group v-model="radio">
+                <v-radio value="radio-1"></v-radio> <v-card-text>{{ item.option1 }}</v-card-text>
+                <v-radio value="radio-2"></v-radio> <v-card-text>{{ item.option2 }}</v-card-text>
+                <v-radio value="radio-3"></v-radio> <v-card-text>{{ item.option3 }}</v-card-text>
+                <v-radio value="radio-4"></v-radio> <v-card-text>{{ item.option4 }}</v-card-text>
             </v-radio-group>
-            <v-radio-group v-model="radios">
-                <template v-slot:label>
-                    <div>Your favourite search engine</div>
-                </template>
-                <v-radio value="Google">
-                    <template v-slot:label>
-                        <div>Of course it's Google</div>
-                    </template>
-                </v-radio>
-                <v-radio value="Duckduckgo">
-                    <template v-slot:label>
-                        <div>Chat GPT</div>
-                    </template>
-                </v-radio>
-            </v-radio-group>
-            <v-radio-group v-model="radios">
-                <template v-slot:label>
-                    <div>Your favourite search engine</div>
-                </template>
-                <v-radio value="Google">
-                    <template v-slot:label>
-                        <div>Of course it's Google</div>
-                    </template>
-                </v-radio>
-                <v-radio value="Duckduckgo">
-                    <template v-slot:label>
-                        <div>Chat GPT</div>
-                    </template>
-                </v-radio>
-            </v-radio-group>
-            <v-radio-group v-model="radios">
-                <template v-slot:label>
-                    <div>Your favourite search engine</div>
-                </template>
-                <v-radio value="Google">
-                    <template v-slot:label>
-                        <div>Of course it's Google</div>
-                    </template>
-                </v-radio>
-                <v-radio value="Duckduckgo">
-                    <template v-slot:label>
-                        <div>Chat GPT</div>
-                    </template>
-                </v-radio>
-            </v-radio-group>
-            <v-btn color="primary">submit</v-btn>
-        </v-container>
-    </v-card> -->
-    <v-card max-width="1000">
-        <v-card  max-width="300">
-            <div class="d-inline">
-                <v-card-text class="d-inline">Hells</v-card-text>
-                <v-card-text class="d-inline">Hells</v-card-text>
-            </div>
-            
-        </v-card>
 
+        </v-card-item>
+        <v-btn class="ma-4" color="success" @click="submission">Submit</v-btn>
     </v-card>
 
 </template>
@@ -88,6 +23,7 @@
 import axios from 'axios';
 import mynavbar from '../../components/navbar/Homenavbar.vue';
 import Studentdashboard from './Studentdashboard.vue';
+import swal from 'sweetalert';
 export default {
     name: 'questions',
     components: {
@@ -96,16 +32,37 @@ export default {
     },
     data() {
         return {
-            details: null
+            details: null,
+            qzarray: [],
+            radio: null
         }
     },
     methods: {
-        async getquestions(details) {
-            // quizquestions.forEach((item)=>{
-            //     console.log(item.answer);
-            // })
-            console.log(details);
+        async getquestions() {
+            try {
+                const title = this.$route.query.title;
+                console.log(title);
+                const token = await localStorage.getItem('token')
+                const questiondetails = await axios.get('http://localhost:5000/get-questions', { headers: { Authorization: "bearer " + token }, params: { title } })
+                console.log(questiondetails);
+                this.qzarray = questiondetails.data.data;
+            }
+            catch (err) {
+                console.log(err);
+            }
+
+        },
+        async submission(){
+            try{
+                swal("Your Submission recorded")
+            }
+            catch(err){
+                console.log(err);
+            }
         }
     },
+    mounted() {
+        this.getquestions()
+    }
 }
 </script>

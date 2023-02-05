@@ -4,46 +4,46 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),  //it created the history so that we can jump back to previous page
   routes: [
     {
-      path:'/',
-      name:'home',
-      component: ()=>import('../views/HomePage/Home.vue')
+      path: '/',
+      name: 'home',
+      component: () => import('../views/HomePage/Home.vue')
     },
-    
+
     {
       //student components
       path: '/student',
-      name:"student",
+      name: "student",
       children: [
         {
-          path:'/student/register',
-          name:'studentsignup',
-          component:()=>import('../views/signup/studentSignup.vue')
+          path: 'register',
+          name: 'studentsignup',
+          component: () => import('../views/signup/studentSignup.vue')
         },
         {
-          path:'/student/login',
-          name:'studentlogin',
-          component:()=>import('../views/login/Studentlogin.vue')
+          path: 'login',
+          name: 'studentlogin',
+          component: () => import('../views/login/Studentlogin.vue')
         },
         {
-          
-          path:'/student/forgot-password',
-          name:'studentforgotpassword',
-          component:()=>import('../views/forgotpassword/Studentforgot.vue')
-        
-      },
+
+          path: 'forgot-password',
+          name: 'studentforgotpassword',
+          component: () => import('../views/forgotpassword/Studentforgot.vue')
+
+        },
         {
-          path:'/student/dashboard',
-          name:'studentdashboard',
-          children:[
+          path: 'dashboard',
+          name: 'studentdashboard',
+          children: [
             {
-              path:'/student/dashboard/quiz',
-              name:'studentquiz',
-              component:()=>import('../views/dashboard/Studentdashboard.vue')
+              path: 'quiz',
+              name: 'studentquiz',
+              component: () => import('../views/dashboard/Studentdashboard.vue')
             },
             {
-              path:'/student/dashboard/quiz/questions',
-              name:'studentquestions',
-              component:()=>import('../views/dashboard/questions.vue')
+              path: 'questions',
+              name: 'studentquestions',
+              component: () => import('../views/dashboard/questions.vue')
             }
           ]
         }
@@ -53,61 +53,65 @@ const router = createRouter({
     //teacher components
     {
       path: '/teacher',
-      name:"teacher",
+      name: "teacher",
       children: [
         {
-          path:'/teacher/signup',
-          name:'teachersignup',
-          component:()=>import('../views/signup/Teachersignup.vue')
+          path: 'signup',
+          name: 'teachersignup',
+          component: () => import('../views/signup/Teachersignup.vue')
         },
         {
-          path:'/teacher/login',
-          name:'teacherlogin',
-          component:()=>import('../views/login/Teacherlogin.vue')
+          path: 'login',
+          name: 'teacherlogin',
+          component: () => import('../views/login/Teacherlogin.vue')
         },
         {
-          
-            path:'/teacher/forgot-password',
-            name:'teacherforgotpassword',
-            component:()=>import('../views/forgotpassword/Teacherforgot.vue')
-          
-        },
-        {
-          path:'/teacher/dashboard',
-          name:'teacherdashboard',
-          component:()=>import('../views/dashboard/Teacherdashboard.vue')
-        },
-        // {
-        //   path:'/student/dashboard',
-        //   redirect:'/student/login'
-        // },
-        {
-          path:'/teacher/dashboard/profile',
-          name:'profile',
-          component:()=>import('../views/dashboard/profile.vue')
-        },
-        {
-          path:'/teacher/dashboard/profile',
-          name:'profile',
-          component:()=>import('../views/dashboard/profile.vue')
-        },
-        {
-          path:'/teacher/dashboard/addquiz',
-          name:'addquiz',
-          component:()=>import('../views/dashboard/addquiz.vue')
-        },
-        {
-          path:'/teacher/dashboard/quiz',
-          name:'quiz',
-          component:()=>import('../views/dashboard/quiz.vue')
-        },
 
+          path: 'forgot-password',
+          name: 'teacherforgotpassword',
+          component: () => import('../views/forgotpassword/Teacherforgot.vue')
+
+        },
+        {
+          path: '/teacher/dashboard',
+          name: 'teacherdashboard',
+          component:()=>import('../views/dashboard/teacher/Teacherdashboard.vue'),
+          children: [
+
+            {
+              path: 'profile',
+              name: 'profile',
+              component: () => import('../views/dashboard/profile.vue')
+            },
+            {
+              path: 'addquiz',
+              name: 'addquiz',
+              component: () => import('../views/dashboard/teacher/addquiz.vue')
+            },
+            {
+              path: 'quizes',
+              name: 'quiz',
+              component: () => import('../views/dashboard/quiz.vue')
+            },
+            {
+              path: 'updatequestions',
+              name: 'updatequestions',
+              component: () => import('../views/dashboard/teacher/updatequestions.vue')
+            },
+            {
+              path: 'addquestions',
+              name: 'addquestions',
+              component: () => import('../views/dashboard/teacher/addquestions.vue')
+            }
+
+          ]
+        },
       ]
     },
     {
       path: '/:pathMatch(.*)*',
-      name:'404error',
-      component: ()=>import('../components/Notfound.vue')
+      name: '404error',
+      component: () => import('../components/Notfound.vue')
     },
   ]
 })

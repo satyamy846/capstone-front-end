@@ -17,9 +17,7 @@
             </v-card-item>
             <v-card-text variant="outlined">{{ item.description }}
             </v-card-text>
-            <v-btn @click="getquestions" variant="text" color="teal-accent-4"> <router-link
-                    style="text-decoration: none; color: inherit;" :to="{ name: 'studentquestions' }"
-                    tag="btn-primary">Start</router-link></v-btn>
+            <v-btn @click="gotoquestion(item.title)" variant="text" color="teal-accent-4">Start</v-btn>
         </v-card>
     </v-card>
 </template>
@@ -44,7 +42,8 @@ export default {
     },
     methods: {
         async getquiz() {
-            const quizdetails = await axios.get('http://localhost:5000/get-quiz');
+        const token = await localStorage.getItem('token')
+        const quizdetails = await axios.get('http://localhost:5000/get-quiz',{headers:{Authorization:"bearer " + token}});
             // console.log(quizdetails);
             // console.log(quizdetails.data.data);
             this.values = quizdetails.data.data;
@@ -55,7 +54,7 @@ export default {
             //     return detail1;
             // })
             // return value;
-            // console.log(this.values);
+            console.log(this.values);
         },
         async getquestions() {
             const questions = await axios.get("http://localhost:5000/get-questions");
@@ -66,7 +65,9 @@ export default {
             // })
 
         },
-
+        async gotoquestion(titleOne){
+            this.$router.push({name:'studentquestions',query:{title:titleOne}})
+        }
     }
 }
 </script>

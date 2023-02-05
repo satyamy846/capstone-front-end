@@ -1,56 +1,59 @@
 <template>
-    <mynavbar />
-    <v-card class="d-inline-block" left height="400" width="256">
+    <v-btn>Back</v-btn>
+    <v-container fluid>
+        <v-btn color="primary" @click="getquiz">Quiz</v-btn>
+        <v-card max-width="1000" class="mx-auto mt-5">
+            
 
-        <v-list-item>
-            <v-list-item-content>
-                <v-list-item-title class="text-h6">
-                    Dashboard
-                </v-list-item-title>
-            </v-list-item-content>
-        </v-list-item>
+            <!-- <v-btn color="primary" @click="getquestions()"><router-link style="text-decoration: none; color: inherit;" :to="{name:'studentquestions'}" tag="btn-primary">questions</router-link></v-btn> -->
+            <v-card class="d-inline-block ma-6" v-for="item in values" :key="item._id" height="290px" width="200px">
+                <v-img src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg" height="100px" cover></v-img>
+                <v-card-item>
+                    <v-card-title>
+                        {{ item.title }}
+                    </v-card-title>
+                    <v-card-subtitle>
+                        Attempt in one go
+                    </v-card-subtitle>
+                </v-card-item>
+                <v-card-text variant="outlined">{{ item.description }}
+                </v-card-text>
+                <v-btn @click="updatequestions(item.title)" variant="text" color="teal-accent-4">Update</v-btn>
+            </v-card>
+        </v-card>
+    </v-container>
 
-        <v-divider></v-divider>
-
-        <v-list dense nav>
-            <v-list-item v-for="item in items" :key="item.title" @click="$router.push({ path: item.route })"
-                link>
-                <v-list-item-icon>
-                    <v-icon>{{ item.icon }}</v-icon>
-                </v-list-item-icon>
-
-                <v-list-item-content>
-                    <v-list-item-title>{{ item.title }}</v-list-item-title>
-                </v-list-item-content>
-
-
-            </v-list-item>
-
-
-        </v-list>
-        <h1>quiz</h1>
-    </v-card>
 </template>
 <script>
-import mynavbar from '../../components/navbar/Homenavbar.vue';
 // import sidebar from '../../components/sidebar.vue';
+import axios from 'axios';
 export default {
-    name: 'SignUp',
-    components: {
-        mynavbar,
-        // sidebar
-    },
+    name: 'quiz',
     data() {
         return {
-            items: [
-                { title: 'Home', icon: 'mdi-home-account', route: '' },
-                { title: 'Profile', icon: 'mdi-account', route: '/teacher/dashboard/profile' },
-                { title: 'Quizes', icon: 'mdi-folder-question', route: '/teacher/dashboard/quiz' },
-                { title: 'Add Quizes', icon: 'mdi-plus-circle', route: '/teacher/dashboard/addquiz' },
-                { title: 'Logout', icon: 'mdi-logout', route: '/teacher/login' },
-            ],
-            right: null,
+            values:[]
         }
     },
+    methods:{
+        async getquiz() {
+        const token = await localStorage.getItem('token')
+        const quizdetails = await axios.get('http://localhost:5000/get-quiz',{headers:{Authorization:"bearer " + token}});
+            // console.log(quizdetails);
+            // console.log(quizdetails.data.data);
+            this.values = quizdetails.data.data;
+            // value.forEach((item,index )=>{
+            //     const detail1 = item.title;
+            //     const detail2 = item.description;
+            //     console.log(`${item.title} ${item.description}`,index);
+            //     return detail1;
+            // })
+            // return value;
+            console.log(this.values);
+        },
+        async updatequestions(titleOne){
+            //update the questions
+            this.$router.push({name:'updatequestions',query:{title:titleOne}})
+        }
+    }
 }
 </script>

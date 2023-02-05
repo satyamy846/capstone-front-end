@@ -19,13 +19,6 @@
                 color="primary">Sign up</v-btn></router-link>
           </v-card-text>
           <v-spacer></v-spacer>
-
-          <!-- <v-btn color="primary" depressed @click="submit">
-            SignIn
-          </v-btn> -->
-          <v-card-text>Forgot password</v-card-text>
-          <router-link style="text-decoration: none; color: inherit;" :to="{ name: 'teacherforgotpassword' }"
-            tag="v-btn"><v-btn color="primary">Forgot password</v-btn></router-link>
         </v-card-actions>
       </v-card>
     </v-col>
@@ -38,7 +31,7 @@ import mynavbar from '../../components/navbar/Homenavbar.vue';
 import axios from 'axios';
 import swal from 'sweetalert';
 export default {
-  name: 'SignUp',
+  name: 'Login',
   components: {
     mynavbar
   },
@@ -52,19 +45,26 @@ export default {
     async login() {
       console.log(this.email, this.password);
       try {
+
         if (this.email && this.password) {
+
           if (this.password.length >= 4 && this.password.length <= 12) {
-            const user = {
+            const data = {
               email: this.email,
               password: this.password,
             };
             const result = await axios.post(
               "http://localhost:5000/teacher/login",
-              user
+              data
             );
             swal("You are logged in", "success");
             console.log(result);
+            //navigating to teacher's dashboard page
             this.$router.push({ path:'/teacher/dashboard', replace: true });
+
+            //setting up the token which is generated while login in localstorage so that teacher's profile 
+            // still remains logged in unless we remove token from localstorage
+            localStorage.setItem('token',result.data.token);
           }
 
           else {

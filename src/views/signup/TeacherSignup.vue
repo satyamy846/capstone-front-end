@@ -27,7 +27,7 @@
                             <v-text-field ref="name" label="Contact" placeholder="Contact Number" required
                                 v-model="contact"></v-text-field>
                                 <v-spacer></v-spacer>
-                            <v-btn @click="postuser" rounded color="primary"  dark>
+                            <v-btn @click="signup" rounded color="primary"  dark>
                                 Register
                             </v-btn>
                             <v-spacer></v-spacer>
@@ -87,27 +87,12 @@ export default {
     methods:
 
     {
-        // async usermodel(){
-        //     console.log('I am clicked!');
-        // },
-        
-        async postuser() {
+        async signup() {
             try {
-                if (this.email == '' || this.email == null) {
+                if (this.email == '' || this.email == null){
                     alert('Email is required!');
-                    // return {
-                    //     snackbar:()=>({
-                    //         snackbar:false,
-                    //         text:"Email is required",
-                    //         timeout:3000,
-                    //     })
-                        
-                    // }
-                }
-                // if(this.first_name=='' || this.first_name==null){
-                //   this.errors.push("First Name is required")
-                // }
-                // console.log("Hi")
+                } 
+                    
                 let result = await axios.post("http://localhost:5000/teacher", {
                     firstname: this.first_name,
                     lastname: this.last_name,
@@ -115,42 +100,14 @@ export default {
                     password: this.password,
                     contact: this.contact
                 });
-                // alert("Registered Successfully")
                 swal("Successfully Registered", "success");
                 console.log(result.data)
-                // console.log("Post kyun ni ho rha")
-                //this.$router.push({name:'homePage'})
-                //console.warn("Output",result.data);
                 await this.$router.push({name:'teacherlogin'});
 
+            
             }
             catch (err) {
                 console.log(err.message)
-            }
-        },
-        async getuser(){
-            try{
-                const data = await axios.get('http://localhost:5000/teacher')
-                console.log(data);
-            }
-            catch(err){
-                console.log(err);
-            }
-        },
-        async updatetuser(){
-            try{
-
-            }
-            catch(err){
-                
-            }
-        },
-        async deleteuser(){
-            try{
-
-            }
-            catch(err){
-                
             }
         },
         
