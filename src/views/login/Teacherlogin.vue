@@ -43,12 +43,15 @@ export default {
   },
   methods: {
     async login() {
-      console.log(this.email, this.password);
       try {
+        if(this.email == '' || this.email==null){
+          alert("Email is required");
+        }
 
-        if (this.email && this.password) {
 
-          if (this.password.length >= 4 && this.password.length <= 12) {
+          if (this.password.length <= 4 && this.password.length >= 12) {
+            alert("Password length should be atleast 4 character")
+          }
             const data = {
               email: this.email,
               password: this.password,
@@ -59,22 +62,26 @@ export default {
             );
             swal("You are logged in", "success");
             console.log(result);
+            // console.log(result.data.teacher[0]);
             //navigating to teacher's dashboard page
-            this.$router.push({ path:'/teacher/dashboard', replace: true });
-
+            this.$router.push({ path:'/teacher/dashboard/view', replace: true });
+            // result.forEach((item,index)=>{
+            //   console.log(item.firstname);
+            // })
+            // console.log(result.data.teacher);
             //setting up the token which is generated while login in localstorage so that teacher's profile 
             // still remains logged in unless we remove token from localstorage
             localStorage.setItem('token',result.data.token);
-          }
-
-          else {
-            console.log("Pasword or email is incorrect");
-          }
-        }
+            localStorage.setItem('teacherfirstname',result.data.teacher[0].firstname);
+            localStorage.setItem('teacherlasttname',result.data.teacher[0].lastname);
+            localStorage.setItem('teacheremail',result.data.teacher[0].email);
+            localStorage.setItem('teachercontact',result.data.teacher[0].contact);
+          
       }
       catch (err) {
-        console.log("Please enter valid data");
+        console.log(err);
       }
+      
     },
     // signup(){
     //   this.$router.push({path:'/signup' , replace:true})

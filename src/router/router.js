@@ -25,25 +25,29 @@ const router = createRouter({
           component: () => import('../views/login/Studentlogin.vue')
         },
         {
-
-          path: 'forgot-password',
-          name: 'studentforgotpassword',
-          component: () => import('../views/forgotpassword/Studentforgot.vue')
-
-        },
-        {
           path: 'dashboard',
           name: 'studentdashboard',
+          component:()=>import('../views/dashboard/student/Studentdashboard.vue'),
           children: [
+            {
+              path: 'view',
+              name: 'studentview',
+              component: () => import('../views/dashboard/student/studentview.vue')
+            },
             {
               path: 'quiz',
               name: 'studentquiz',
-              component: () => import('../views/dashboard/Studentdashboard.vue')
+              component: () => import('../views/dashboard/student/studentquiz.vue')
+            },
+            {
+              path: 'profile',
+              name: 'studentprofile',
+              component: () => import('../views/dashboard/student/studentprofile.vue')
             },
             {
               path: 'questions',
               name: 'studentquestions',
-              component: () => import('../views/dashboard/questions.vue')
+              component: () => import('../views/dashboard/student/questions.vue')
             }
           ]
         }
@@ -66,22 +70,19 @@ const router = createRouter({
           component: () => import('../views/login/Teacherlogin.vue')
         },
         {
-
-          path: 'forgot-password',
-          name: 'teacherforgotpassword',
-          component: () => import('../views/forgotpassword/Teacherforgot.vue')
-
-        },
-        {
           path: '/teacher/dashboard',
           name: 'teacherdashboard',
           component:()=>import('../views/dashboard/teacher/Teacherdashboard.vue'),
           children: [
-
+            {
+              path:'view',
+              name:'teacherview',
+              component:()=>import('../views/dashboard/teacher/teacherview.vue'),
+            },
             {
               path: 'profile',
               name: 'profile',
-              component: () => import('../views/dashboard/profile.vue')
+              component: () => import('../views/dashboard/teacher/profile.vue')
             },
             {
               path: 'addquiz',
@@ -91,12 +92,17 @@ const router = createRouter({
             {
               path: 'quizes',
               name: 'quiz',
-              component: () => import('../views/dashboard/quiz.vue')
+              component: () => import('../views/dashboard/teacher/quiz.vue')
             },
             {
               path: 'updatequestions',
               name: 'updatequestions',
               component: () => import('../views/dashboard/teacher/updatequestions.vue')
+            },
+            {
+              path: 'updatequiz',
+              name: 'updatequiz',
+              component: () => import('../views/dashboard/teacher/updatequiz.vue')
             },
             {
               path: 'addquestions',

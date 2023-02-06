@@ -61,9 +61,14 @@ export default {
             swal("You are logged in", "success");
             console.log(result);
             // console.log(result.data.user.contact);
-            this.$router.push({ path: "/student/dashboard/quiz", replace: true });
+            this.$router.push({ path: "/student/dashboard/view", replace: true });
             
-            localStorage.setItem('token',result.data.token)
+            localStorage.setItem('token',result.data.token);
+            // localStorage.setItem('user',result.data.user);
+            localStorage.setItem('userfirstname',result.data.user.firstname);
+            localStorage.setItem('userlasttname',result.data.user.lastname);
+            localStorage.setItem('useremail',result.data.user.email);
+            localStorage.setItem('usercontact',result.data.user.contact);
             
           }
 

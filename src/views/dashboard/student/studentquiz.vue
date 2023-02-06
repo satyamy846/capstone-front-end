@@ -1,10 +1,6 @@
 <template>
-    <mynavbar />
-    <v-btn color="primary" @click="getquiz">Quiz</v-btn>
-    <v-card max-width="1000"  class="mx-auto mt-5">
-
-        
-        <!-- <v-btn color="primary" @click="getquestions()"><router-link style="text-decoration: none; color: inherit;" :to="{name:'studentquestions'}" tag="btn-primary">questions</router-link></v-btn> -->
+<v-container fluid>
+    <v-card width="1200"  class=" mt-5">
         <v-card class="d-inline-block ma-6" v-for="item in values" :key="item._id" height="290px" width="200px">
             <v-img src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg" height="100px" cover></v-img>
             <v-card-item>
@@ -20,13 +16,14 @@
             <v-btn @click="gotoquestion(item.title)" variant="text" color="teal-accent-4">Start</v-btn>
         </v-card>
     </v-card>
+</v-container>
 </template>
 
 <script>
 import axios from 'axios';
-import mynavbar from '../../components/navbar/Homenavbar.vue';
+import mynavbar from '../../../components/navbar/Homenavbar.vue';
 export default {
-    name: 'student',
+    name: 'studentquiz',
     components: {
         mynavbar,
     },
@@ -56,18 +53,12 @@ export default {
             // return value;
             console.log(this.values);
         },
-        async getquestions() {
-            const questions = await axios.get("http://localhost:5000/get-questions");
-            // this.values = questions.data.data;
-            // console.log(data);
-            // data.forEach((item)=>{
-            //     console.log(item.title)
-            // })
-
-        },
         async gotoquestion(titleOne){
             this.$router.push({name:'studentquestions',query:{title:titleOne}})
         }
+    },
+    mounted(){
+        this.getquiz()
     }
 }
 </script>
@@ -78,5 +69,4 @@ export default {
     opacity: 1 !important;
     position: absolute;
     width: 100%;
-}
-</style>
+}</style>

@@ -13,7 +13,33 @@
     </v-container>
 </template>
 <script>
-    export default{
-        name:'updatequestions'
+import axios from 'axios';
+import swal from 'sweetalert';
+
+
+export default{
+    name:'updatequestions',
+    data(){
+        return{
+            questions:[]
+        }
+    },
+
+    methods:{
+        async getquestions(titleOne){
+            const token = localStorage.getItem('token');
+            const details = await axios.get("http://localhost:5000/get-questions",{headers:{Authorization:"bearer " + token}});
+            console.log(details);
+            this.questions = details.data.data;
+        },
+        async updatequestions(titleOne) {
+            //update the questions
+            this.$router.push({ name: 'updatequestions', query: { title: titleOne } })
+        }
+    },
+    mounted(){
+        this.getquestions();
     }
+
+}
 </script>

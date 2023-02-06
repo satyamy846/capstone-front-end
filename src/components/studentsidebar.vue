@@ -1,11 +1,10 @@
 <template>
-
-    <v-card class="d-inline-block" left height="420" width="256">
+    <v-card class="d-inline-block" left height="300" width="256">
 
         <v-list-item>
             <v-list-item-content>
                 <v-list-item-title class="text-h6">
-                    Dashboard
+                    Menu
                 </v-list-item-title>
             </v-list-item-content>
         </v-list-item>
@@ -17,9 +16,12 @@
                 <v-list-item-icon>
                     <v-icon>{{ item.icon }}</v-icon>
                 </v-list-item-icon>
+
                 <v-list-item-content>
                     <v-list-item-title>{{ item.title }}</v-list-item-title>
                 </v-list-item-content>
+
+
             </v-list-item>
 
 
@@ -29,16 +31,14 @@
 
 <script>
 export default {
-    name: 'Sidebar',
+    name: 'studentsidebar',
     data() {
         return {
             items: [
-                { title: 'Home', icon: 'mdi-home-account', route: '/teacher/dashboard/view' },
-                { title: 'Profile', icon: 'mdi-account', route: '/teacher/dashboard/profile' },
-                { title: 'Quizes', icon: 'mdi-folder-question', route: '/teacher/dashboard/quizes' },
-                { title: 'Add Quizes', icon: 'mdi-plus-circle', route: '/teacher/dashboard/addquiz' },
-                { title: 'Add Questions', icon: 'mdi-plus-circle', route: '/teacher/dashboard/addquestions' },
-                { title: 'Logout', icon: 'mdi-logout', route: '/teacher/login' },
+                { title: 'Home', icon: 'mdi-home-account', route: '/student/dashboard/view' },
+                { title: 'Profile', icon: 'mdi-account', route: '/student/dashboard/profile' },
+                { title: 'Go to quiz', icon: 'mdi-folder-question', route: '/student/dashboard/quiz' },
+                { title: 'Logout', icon: 'mdi-logout', route: '/student/login' },
             ],
             model: 1,
         }

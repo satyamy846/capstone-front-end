@@ -6,7 +6,7 @@
                 <!--Menu-->
                 <sidebar/>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-10">
                 <!--Content-->
                 <router-view></router-view>
             </div>
@@ -20,14 +20,17 @@
 <script>
 import mynavbar from '../../../components/navbar/Homenavbar.vue';
 import sidebar from '../../../components/sidebar.vue';
-import profile from '../profile.vue';
-// import quiz from './quiz.vue';
+import profile from './profile.vue';
+import quiz from './quiz.vue';
+import teacherview from './teacherview.vue';
 export default {
-    name: 'SignUp',
+    name: 'Teacherdashboard',
     components: {
         mynavbar,
         sidebar,
-        profile
+        profile,
+        quiz,
+        teacherview
     },
     data() {
         return {

@@ -1,7 +1,7 @@
 <template>
     <v-card class="d-inline-block ma-5" height="900px" width="800px">
         <v-card-item>
-            <v-card-title class="mt-3">Add quiz</v-card-title>
+            <v-card-title class="mt-3 justify-content:center">Add Questions</v-card-title>
             <v-text-field label="Question Name" placeholder="Enter Your Question" type="text" required
                 v-model="content"></v-text-field>
             <v-text-field label="Option1" placeholder="Option1" type="text" required v-model="option1"></v-text-field>

@@ -1,5 +1,4 @@
 <template>
-    <mynavbar />
 
     <v-card class="mx-auto mt-5" width="800">
         <v-card-item v-for="item in qzarray" :key="item._id">
@@ -21,7 +20,7 @@
 
 <script>
 import axios from 'axios';
-import mynavbar from '../../components/navbar/Homenavbar.vue';
+import mynavbar from '../../../components/navbar/Homenavbar.vue';
 import Studentdashboard from './Studentdashboard.vue';
 import swal from 'sweetalert';
 export default {
