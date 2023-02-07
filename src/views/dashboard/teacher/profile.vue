@@ -1,21 +1,15 @@
 <template>
-    <div class="bootstrap-wrapper">
-        <div class="row">
-            <div class="col-md-6">
-                <!--Content-->
-                <v-card>
-            <v-card-item>
+       <v-card height="500" width="600" >
+            <v-card-item >
                 <v-icon icon="mdi-account" size="x-large"></v-icon>
+                
                 <v-card-title>Profile</v-card-title>
-                <v-card-subtitle>First Name: {{ firstname }}</v-card-subtitle>
-                <v-card-subtitle>Last Name: {{ lastname }}</v-card-subtitle>
-                <v-card-subtitle> Email :{{ email }}</v-card-subtitle>
-                <v-card-subtitle> Contact :{{ contact }}</v-card-subtitle>
+                <v-card-subtitle><strong>First Name: </strong>{{ firstname }}</v-card-subtitle>
+                <v-card-subtitle><strong>Last Name: </strong>{{ lastname }}</v-card-subtitle>
+                <v-card-subtitle><strong>Email :</strong> {{ email }}</v-card-subtitle>
+                <v-card-subtitle> <strong>Contact :</strong>{{ contact }}</v-card-subtitle>
             </v-card-item>
         </v-card>
-            </div>
-        </div>
-    </div>
 </template>
 <script>
 import axios from 'axios';

@@ -4,6 +4,7 @@ export default createStore({
   state: {
     email:"",
     questionDetails:{ },
+    firstname:''
   },
   getters: {
   },

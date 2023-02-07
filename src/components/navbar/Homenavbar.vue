@@ -1,25 +1,21 @@
 <template>
-    <!-- <v-app> -->
-        <nav>
-                <v-toolbar app color="blue">
-                <!-- <v-app-bar-nav-icon @click="drawer =!drawer"></v-app-bar-nav-icon> -->
-                <v-toolbar-title class="text-uppercase grey--text" >
-                    <span class="font-weight-light"> <router-link to="/" style="text-decoration: none; color: inherit;">Exam</router-link></span>
-                    <span><router-link to="/" style="text-decoration: none; color: inherit;">Portal</router-link></span>
-                </v-toolbar-title>
+    <v-toolbar app color="blue">
 
-                
-                <router-link style="text-decoration: none; color: inherit;" to="/teacher/signup" tag="v-btn"><v-btn>Teacher</v-btn></router-link>
-                <router-link style="text-decoration: none; color: inherit;" :to="{name: 'studentsignup'}" tag="v-btn"><v-btn>Student</v-btn></router-link>
-                <!-- <v-navigation-drawer v-model="drawer" absolute bottom temporary class="indigo">
-                    <p>ell</p>
-                </v-navigation-drawer> -->
-                
-            </v-toolbar>
+        <v-toolbar-title class="text-uppercase grey--text">
 
-            
-        </nav>
-    <!-- </v-app> -->
+            <span class="font-weight-light"> <router-link to="/" style="text-decoration: none; color: inherit;">
+                    <v-icon icon="mdi-laptop-account" class="mr-2"></v-icon>
+                    Exam</router-link></span>
+            <span><router-link to="/" style="text-decoration: none; color: inherit;">Portal</router-link></span>
+        </v-toolbar-title>
+
+
+        <router-link style="text-decoration: none; color: inherit;" to="/teacher/login" tag="v-btn">
+            <v-btn>Teacher</v-btn></router-link>
+        <router-link style="text-decoration: none; color: inherit;" :to="{ name: 'studentlogin' }" tag="v-btn">
+            <v-btn>Student</v-btn></router-link>
+
+    </v-toolbar>
 
 
 </template>

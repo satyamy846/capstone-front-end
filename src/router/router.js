@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),  //it created the history so that we can jump back to previous page
+  history: createWebHistory(import.meta.env.BASE_URL),  //it created the history so that we can jump back to previous page easily
   routes: [
     {
       path: '/',
@@ -17,17 +17,20 @@ const router = createRouter({
         {
           path: 'register',
           name: 'studentsignup',
-          component: () => import('../views/signup/studentSignup.vue')
+          component: () => import('../views/signup/studentSignup.vue'),
+          meta:{auth:false}
         },
         {
           path: 'login',
           name: 'studentlogin',
-          component: () => import('../views/login/Studentlogin.vue')
+          component: () => import('../views/login/Studentlogin.vue'),
+          meta:{auth:false}
         },
         {
           path: 'dashboard',
           name: 'studentdashboard',
           component:()=>import('../views/dashboard/student/Studentdashboard.vue'),
+          meta:{auth:true},
           children: [
             {
               path: 'view',
@@ -62,17 +65,20 @@ const router = createRouter({
         {
           path: 'signup',
           name: 'teachersignup',
-          component: () => import('../views/signup/Teachersignup.vue')
+          component: () => import('../views/signup/Teachersignup.vue'),
+          meta:{auth:false}
         },
         {
           path: 'login',
           name: 'teacherlogin',
-          component: () => import('../views/login/Teacherlogin.vue')
+          component: () => import('../views/login/Teacherlogin.vue'),
+          meta:{auth:false}
         },
         {
           path: '/teacher/dashboard',
           name: 'teacherdashboard',
           component:()=>import('../views/dashboard/teacher/Teacherdashboard.vue'),
+          meta:{auth:true},
           children: [
             {
               path:'view',
@@ -108,6 +114,11 @@ const router = createRouter({
               path: 'addquestions',
               name: 'addquestions',
               component: () => import('../views/dashboard/teacher/addquestions.vue')
+            },
+            {
+              path:'viewquiz',
+              name:'viewquizpage',
+              component:()=>import('../views/dashboard/teacher/viewquiz.vue')
             }
 
           ]
@@ -120,6 +131,25 @@ const router = createRouter({
       component: () => import('../components/Notfound.vue')
     },
   ]
+})
+
+router.beforeEach((to, from,next)=>{
+  // console.log(to);
+  //check if user is not authenticated and trying to access the dashboard page
+  const token = localStorage.getItem('token');
+  if(to.meta.auth && !token ){
+    next({name:'home'});
+  }
+  // else if(to.meta.auth && !token ){
+  //   next({name:'teacherlogin'});
+  // }
+  else if(!to.meta.auth && token){
+    //if we have the token so it will keep us stay at the same page
+    next({name:'studentdashboard'})
+  }
+  else{
+    next();
+  }
 })
 
 export default router

@@ -1,6 +1,6 @@
 <template>
 
-    <v-card class="mx-auto mt-5" width="800">
+<v-card class="mx-auto mt-5" width="800">
         <v-card-item v-for="item in qzarray" :key="item._id">
             <v-card-title class="ma-3">{{ item.title }}</v-card-title>
             <hr>
@@ -13,22 +13,18 @@
             </v-radio-group>
 
         </v-card-item>
-        <v-btn class="ma-4" color="success" @click="submission">Submit</v-btn>
+        <v-btn class="ma-4" outline color="primary" @click="goback">Go Back</v-btn>
     </v-card>
-
 </template>
-
 <script>
 import axios from 'axios';
-import mynavbar from '../../../components/navbar/Homenavbar.vue';
-import Studentdashboard from './Studentdashboard.vue';
 import swal from 'sweetalert';
 export default {
-    name: 'questions',
-    components: {
-        mynavbar,
-        Studentdashboard
-    },
+    name: 'viewquiz',
+    // components: {
+    //     navbar,
+    //     Studentdashboard
+    // },
     data() {
         return {
             details: null,
@@ -51,17 +47,8 @@ export default {
             }
 
         },
-        async submission(){
-            try{
-                //we have to implement the logic like this
-                // if(radio == answer){
-                //     alert("Your answer is correct you scored 10 out of 20")
-                // }
-                swal("Your Submission recorded");
-            }
-            catch(err){
-                console.log(err);
-            }
+        async goback(){
+            this.$router.push({name:'quiz'})
         }
     },
     mounted() {

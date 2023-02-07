@@ -1,22 +1,33 @@
 <template>
-<mynavbar />
-    <div class="bootstrap-wrapper">
+<navbar />
+    <!-- <div class="bootstrap-wrapper">
         <div class="row">
             <div class="col-md-2">
-                <!--Menu-->
+
                 <studentsidebar/>
             </div>
             <div class="col-md-2">
-                <!--Content-->
-                <!-- <h1>content</h1> -->
+
                 <router-view></router-view>
             </div>
         </div>
-    </div>
+    </div> -->
+
+    <v-container fluid >
+        <v-row wrap >
+            <v-col md-2 xs-12>
+                <studentsidebar/>
+            </v-col>
+            
+            <v-col md-4 xs-12 >
+                <router-view></router-view>
+            </v-col>
+        </v-row>
+    </v-container>
 </template>
 
 <script>
-import mynavbar from '../../../components/navbar/Homenavbar.vue';
+import navbar from '../../../components/navbar/dashboardnavbar.vue';
 import studentsidebar from '../../../components/studentsidebar.vue';
 import studentprofile from './studentprofile.vue';
 import studentquiz from './studentquiz.vue';
@@ -24,7 +35,7 @@ export default{
     name:'studentdashboard',
 
     components:{
-        mynavbar,
+        navbar,
         studentsidebar,
         studentprofile,
         studentquiz
@@ -34,5 +45,7 @@ export default{
 </script>
 
 <style>
-
+    body{
+        background-color: #E3F2FD;
+    }
 </style>

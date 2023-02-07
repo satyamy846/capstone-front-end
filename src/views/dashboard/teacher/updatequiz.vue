@@ -17,19 +17,26 @@ export default{
     name:'updatequiz',
     data(){
         return{
-            quizdetails:[],
+            title:'',
+            description:'',
         }
     },
     methods:{
         async updatequiz(){
-            if(err){
+            try{
+                const token = localStorage.getItem('token');
+            const id = localStorage.getItem('quizId');
+            const details = axios.put(`http://localhost:5000/update-quiz/${id}`,{
+                title:this.title,
+                description:this.description,
+            },{headers:{Authorization:"bearer " + token}})
+            console.log(details);
+            console.log("success");
+            }
+            catch(err){
                 console.log(err);
             }
-            const token = localStorage.getItem('token');
-            const id = localStorage.getItem('_id')
-            const details = axios.get(`http://localhost:5000/update-quiz${id}`,{headers:{Authorization:"bearer " + token}})
-            this.quizdetails = details.data.data;
-            console.log(quizdetails);
+            
         }
     },
     // mounted(){

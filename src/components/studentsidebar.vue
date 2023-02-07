@@ -1,5 +1,5 @@
 <template>
-    <v-card class="d-inline-block" left height="300" width="256">
+    <v-card class="d-inline-block" left height="270" width="256">
 
         <v-list-item>
             <v-list-item-content>
@@ -38,7 +38,7 @@ export default {
                 { title: 'Home', icon: 'mdi-home-account', route: '/student/dashboard/view' },
                 { title: 'Profile', icon: 'mdi-account', route: '/student/dashboard/profile' },
                 { title: 'Go to quiz', icon: 'mdi-folder-question', route: '/student/dashboard/quiz' },
-                { title: 'Logout', icon: 'mdi-logout', route: '/student/login' },
+                // { title: 'Logout', icon: 'mdi-logout', route: '/student/login' },
             ],
             model: 1,
         }

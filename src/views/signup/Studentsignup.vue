@@ -5,7 +5,7 @@
 
             <v-row justify="center">
                 <v-col cols="12" sm="10" md="8" lg="6">
-                    <v-card class="mx-auto my-12 mt-0" max-width="500" ref="form" >
+                    <v-card class="mx-auto my-12 mt-2" max-width="500" ref="form" >
                         <v-card-text>
                             <v-card-title>Student Register</v-card-title>
                             <v-text-field ref="name" label="First Name" placeholder="Enter Your First Name" required

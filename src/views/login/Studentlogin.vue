@@ -66,7 +66,7 @@ export default {
             localStorage.setItem('token',result.data.token);
             // localStorage.setItem('user',result.data.user);
             localStorage.setItem('userfirstname',result.data.user.firstname);
-            localStorage.setItem('userlasttname',result.data.user.lastname);
+            localStorage.setItem('userlastname',result.data.user.lastname);
             localStorage.setItem('useremail',result.data.user.email);
             localStorage.setItem('usercontact',result.data.user.contact);
             

@@ -4,7 +4,7 @@
     <v-col cols="12" sm="10" md="8" lg="6">
       <v-card class="mx-auto my-12" max-width="450" ref="form">
         <v-card-text>
-          <v-card-title>Faculty Sign in</v-card-title>
+          <v-card-title>Faculty Login in</v-card-title>
           <v-text-field ref="email" label="Email" placeholder="Your Email" type="email" required v-model="email" ></v-text-field>
           <v-text-field ref="password" label="Passward" placeholder="Your Password" type="password"
             required v-model="password"></v-text-field>
@@ -73,7 +73,7 @@ export default {
             // still remains logged in unless we remove token from localstorage
             localStorage.setItem('token',result.data.token);
             localStorage.setItem('teacherfirstname',result.data.teacher[0].firstname);
-            localStorage.setItem('teacherlasttname',result.data.teacher[0].lastname);
+            localStorage.setItem('teacherlastname',result.data.teacher[0].lastname);
             localStorage.setItem('teacheremail',result.data.teacher[0].email);
             localStorage.setItem('teachercontact',result.data.teacher[0].contact);
           

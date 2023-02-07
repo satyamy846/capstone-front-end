@@ -1,5 +1,5 @@
 <template>
-    <v-card class="d-inline-block ma-5" height="900px" width="800px">
+    <v-card  height="900px" width="800px">
         <v-card-item>
             <v-card-title class="mt-3">Add quiz</v-card-title>
             <v-text-field label="Title" placeholder="Title" type="text" required v-model="title"></v-text-field>
