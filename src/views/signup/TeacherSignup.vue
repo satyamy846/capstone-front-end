@@ -93,7 +93,7 @@ export default {
                     alert('Email is required!');
                 } 
                     
-                let result = await axios.post("http://localhost:5000/teacher", {
+                let result = await axios.post(import.meta.env.VITE_APIURL + "/teacher", {
                     firstname: this.first_name,
                     lastname: this.last_name,
                     email: this.email,

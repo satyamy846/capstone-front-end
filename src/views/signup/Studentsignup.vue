@@ -69,7 +69,7 @@ import mynavbar from '../../components/navbar/Homenavbar.vue';
             async studentRegistration(){
                 try{
                     console.log(this.email,this.password);
-                    const details = await axios.post("http://localhost:5000/student",{
+                    const details = await axios.post(import.meta.env.VITE_APIURL + "/student",{
                     firstname:this.first_name,
                     lastname: this.last_name,
                     email: this.email,
