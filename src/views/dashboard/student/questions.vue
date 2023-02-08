@@ -1,15 +1,18 @@
 <template>
 
     <v-card class="mx-auto mt-5" width="800">
-        <v-card-item v-for="item in qzarray" :key="item._id">
-            <v-card-title class="ma-3">{{ item.title }}</v-card-title>
+        <v-card-title class="ma-3">{{ titleOne }}</v-card-title>
+        <v-card-item v-for="(item,index) in qzarray" :key="item._id">
             <hr>
-            <v-card-sub-title class="ma-3">{{ item.content }}</v-card-sub-title>
-            <v-radio-group v-model="radio">
-                <v-radio value="radio-1"></v-radio> <v-card-text>{{ item.option1 }}</v-card-text>
-                <v-radio value="radio-2"></v-radio> <v-card-text>{{ item.option2 }}</v-card-text>
-                <v-radio value="radio-3"></v-radio> <v-card-text>{{ item.option3 }}</v-card-text>
-                <v-radio value="radio-4"></v-radio> <v-card-text>{{ item.option4 }}</v-card-text>
+            <!-- <v-card-sub-title class="ma-3"><h5>Q{{ index+1 }}. {{ item.content }}</h5></v-card-sub-title> -->
+            <p><b>Q.{{ index+1 }}</b>
+            <span class="ml-2">{{ item.content }}</span>
+            </p>
+            <v-radio-group v-model="radio[index]">
+                <v-radio value="radio-1"></v-radio> <v-card-text><strong>A. </strong>{{ item.option1 }}</v-card-text>
+                <v-radio value="radio-2"></v-radio> <v-card-text><strong>B. </strong>{{ item.option2 }}</v-card-text>
+                <v-radio value="radio-3"></v-radio> <v-card-text><strong>C. </strong>{{ item.option3 }}</v-card-text>
+                <v-radio value="radio-4"></v-radio> <v-card-text><strong>D. </strong>{{ item.option4 }}</v-card-text>
             </v-radio-group>
 
         </v-card-item>
@@ -33,7 +36,8 @@ export default {
         return {
             details: null,
             qzarray: [],
-            radio: null
+            radio:[],
+            titleOne:''
         }
     },
     methods: {
@@ -42,9 +46,10 @@ export default {
                 const title = this.$route.query.title;
                 console.log(title);
                 const token = await localStorage.getItem('token')
-                const questiondetails = await axios.get('http://localhost:5000/get-questions', { headers: { Authorization: "bearer " + token }, params: { title } })
+                const questiondetails = await axios.get(import.meta.env.VITE_APIURL + '/get-questions', { headers: { Authorization: "bearer " + token }, params: { title } })
                 console.log(questiondetails);
                 this.qzarray = questiondetails.data.data;
+                this.titleOne = title;
             }
             catch (err) {
                 console.log(err);
@@ -56,7 +61,9 @@ export default {
                 //we have to implement the logic like this
                 // if(radio == answer){
                 //     alert("Your answer is correct you scored 10 out of 20")
+
                 // }
+
                 swal("Your Submission recorded");
             }
             catch(err){

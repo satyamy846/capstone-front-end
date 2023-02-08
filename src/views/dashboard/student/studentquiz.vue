@@ -1,8 +1,7 @@
 <template>
-<v-container fluid>
-    <v-card width="1200"  class=" mt-5">
-        <v-card class="d-inline-block ma-6" v-for="item in values" :key="item._id" height="290px" width="200px">
-            <v-img src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg" height="100px" cover></v-img>
+    <v-card width="1200"  >
+        <v-card class="d-inline-block ma-6" v-for="item in values" :key="item._id" height="300px" width="200px">
+            <v-img src="https://neteims.com/wp-content/themes/ims/assets/images/online-exam-portal-2.svg" height="100px" cover></v-img>
             <v-card-item>
                 <v-card-title>
                     {{ item.title }}
@@ -16,7 +15,6 @@
             <v-btn @click="gotoquestion(item.title)" variant="text" color="teal-accent-4">Start</v-btn>
         </v-card>
     </v-card>
-</v-container>
 </template>
 
 <script>
@@ -40,7 +38,7 @@ export default {
     methods: {
         async getquiz() {
         const token = await localStorage.getItem('token')
-        const quizdetails = await axios.get('http://localhost:5000/get-quiz',{headers:{Authorization:"bearer " + token}});
+        const quizdetails = await axios.get(import.meta.env.VITE_APIURL + '/get-quiz',{headers:{Authorization:"bearer " + token}});
             // console.log(quizdetails);
             // console.log(quizdetails.data.data);
             this.values = quizdetails.data.data;

@@ -14,13 +14,14 @@
         <v-divider class="mt-2"></v-divider>
         <v-card-actions>
           <v-card-text>
-            <v-btn depressed color="success" @click="login">Sign In</v-btn>
+            <v-btn  x-large color="success" @click="login">Sign In</v-btn>
+            
             <p>Not yet Sign up?</p>
             <v-spacer></v-spacer>
             <router-link style="text-decoration: none; color: inherit;" :to="{ name: 'studentsignup' }" tag="v-btn"><v-btn
                 color="primary">Sign up</v-btn></router-link>
           </v-card-text>
-
+          
           <v-spacer></v-spacer>
         </v-card-actions>
       </v-card>
@@ -55,7 +56,7 @@ export default {
               password: this.password,
             };
             const result = await axios.post(
-              "http://localhost:5000/student/login",
+              import.meta.env.VITE_APIURL + "/student/login",
               user
             );
             swal("You are logged in", "success");

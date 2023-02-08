@@ -5,8 +5,8 @@
 
             <span class="font-weight-light"> <router-link to="/" style="text-decoration: none; color: inherit;">
                     <v-icon icon="mdi-laptop-account" class="mr-2"></v-icon>
-                    Exam</router-link></span>
-            <span><router-link to="/" style="text-decoration: none; color: inherit;">Portal</router-link></span>
+                    Online</router-link></span>
+            <span><router-link to="/" style="text-decoration: none; color: inherit;">Quiz</router-link></span>
         </v-toolbar-title>
 
 

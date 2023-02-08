@@ -45,7 +45,7 @@ export default {
                 //fetch the token from the localStorage
                 const token = localStorage.getItem('token');
                 // console.log(token);
-                const details = await axios.post("http://localhost:5000/addquestions", {
+                const details = await axios.post(import.meta.env.VITE_APIURL + "/addquestions", {
                     content: this.content,
                     option1: this.option1,
                     option2: this.option2,
@@ -64,7 +64,7 @@ export default {
         },
         async gettitle() {
             const token = localStorage.getItem('token');
-            const data = await axios.get("http://localhost:5000/get-quiz", { headers: { Authorization: "bearer " + token } })
+            const data = await axios.get(import.meta.env.VITE_APIURL + "/get-quiz", { headers: { Authorization: "bearer " + token } })
 
             this.fetchtitle = data.data.data;
             console.log(data.data.data);

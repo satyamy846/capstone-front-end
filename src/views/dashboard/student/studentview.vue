@@ -1,8 +1,8 @@
 <template>
-  <div><h3>Welcome to student dashboard page</h3></div>
-      <div class="image">
+  <v-card maxwidth="200"><h2>Welcome to Student dashboard page</h2></v-card>
+      <!-- <div class="image">
         <img src="../../../assets/student learning.jpg" alt="student-image">
-      </div>
+      </div> -->
       
       
       

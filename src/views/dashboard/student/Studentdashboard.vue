@@ -12,18 +12,31 @@
             </div>
         </div>
     </div> -->
-
+    
     <v-container fluid >
-        <v-row wrap >
+        <v-row wrap>
             <v-col md-2 xs-12>
                 <studentsidebar/>
             </v-col>
             
-            <v-col md-4 xs-12 >
+            <v-col md-10 xs-12 >
                 <router-view></router-view>
             </v-col>
         </v-row>
     </v-container>
+<!-- <div class="bootstrap-wrapper">
+    <div class="container-fluid">
+        <div class="row">
+        <div class="col-md-2">
+            <studentsidebar/>
+        </div>
+        <div class="col-md-10">
+            <router-view></router-view>
+        </div>
+    </div>
+    </div>
+</div> -->
+    
 </template>
 
 <script>

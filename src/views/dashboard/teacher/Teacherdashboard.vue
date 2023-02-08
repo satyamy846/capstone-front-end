@@ -13,13 +13,13 @@
         </div>
     </div> -->
 
-    <v-container fluid class="bodycolor">
+    <v-container fluid>
         <v-row wrap >
-            <v-col md-2 xs-12>
+            <v-col md-6 xs-12>
                 <sidebar/>
             </v-col>
             
-            <v-col md-4 xs-12 >
+            <v-col md-6 xs-12 >
                 <router-view></router-view>
             </v-col>
         </v-row>

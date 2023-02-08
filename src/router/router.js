@@ -145,11 +145,16 @@ router.beforeEach((to, from,next)=>{
   // }
   else if(!to.meta.auth && token){
     //if we have the token so it will keep us stay at the same page
-    next({name:'studentdashboard'})
+    next({name:'studentdashboard'});
   }
   else{
     next();
   }
-})
+});
+
+// window.onload = function() {
+//   localStorage.clear();
+//   return '';
+// };
 
 export default router

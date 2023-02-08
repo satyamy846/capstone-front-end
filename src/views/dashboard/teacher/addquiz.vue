@@ -32,7 +32,7 @@ export default {
                 //fetch the token from the localStorage
                 const token =  localStorage.getItem('token');
                 // console.log(token);
-                const details = await axios.post("http://localhost:5000/addquiz", {
+                const details = await axios.post(import.meta.env.VITE_APIURL + "/addquiz", {
                     title: this.title,
                     description: this.description,
                 },{headers:{Authorization:"bearer " + token}},); 

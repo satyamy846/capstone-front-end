@@ -57,7 +57,7 @@ export default {
               password: this.password,
             };
             const result = await axios.post(
-              "http://localhost:5000/teacher/login",
+              import.meta.env.VITE_APIURL + "/teacher/login",
               data
             );
             swal("You are logged in", "success");

@@ -1,15 +1,19 @@
 <template>
     <v-container>
-        <v-card>
-            <v-card-item>
-                <v-text-field label="Question Name" placeholder="Enter Your Question"></v-text-field>
-                <v-radio v-model="radio" value="radio-1"></v-radio><v-card-text>Merge sort</v-card-text>
-                <v-radio v-model="radio" value="radio-1"></v-radio><v-card-text>Merge sort</v-card-text>
-                <v-radio v-model="radio" value="radio-1"></v-radio><v-card-text>Merge sort</v-card-text>
-                <v-radio v-model="radio" value="radio-1"></v-radio><v-card-text>Merge sort</v-card-text>
-            </v-card-item>
-            <v-btn color="blue-grey" class="ma-3 white--text">Update</v-btn>
-        </v-card>
+        <form action="POST">
+        <v-card class="d-inline-block ma-5"  width="800px">
+        <v-card-item v-for="item in questions">
+            <v-card-title class="mt-3">{{ item.title }}</v-card-title>
+            <v-text-field label="Title" placeholder="Title" type="text" required v-model="item.content"></v-text-field>
+            <v-text-field label="Description" placeholder="Description" type="text" required v-model="item.option1"></v-text-field>
+            <v-text-field label="Description" placeholder="Description" type="text" required v-model="item.option2"></v-text-field>
+            <v-text-field label="Description" placeholder="Description" type="text" required v-model="item.option3"></v-text-field>
+            <v-text-field label="Description" placeholder="Description" type="text" required v-model="item.option4"></v-text-field>
+            <v-text-field label="Description" placeholder="Description" type="text" required v-model="item.answer"></v-text-field>
+            <v-btn @click="updatequestions" color="blue-grey" class="ml-4">Update</v-btn>
+        </v-card-item>
+    </v-card>
+    </form>
     </v-container>
 </template>
 <script>
@@ -26,15 +30,35 @@ export default{
     },
 
     methods:{
-        async getquestions(titleOne){
-            const token = localStorage.getItem('token');
-            const details = await axios.get("http://localhost:5000/get-questions",{headers:{Authorization:"bearer " + token}});
-            console.log(details);
-            this.questions = details.data.data;
+        async getquestions() {
+            try {
+                const title = this.$route.query.title;
+                console.log(title);
+                const token = await localStorage.getItem('token')
+                const questiondetails = await axios.get('http://localhost:5000/get-questions', { headers: { Authorization: "bearer " + token }, params: { title } })
+                console.log(questiondetails);
+                this.questions = questiondetails.data.data;
+            }
+            catch (err) {
+                console.log(err);
+            }
+
         },
-        async updatequestions(titleOne) {
+        async updatequestions() {
             //update the questions
-            this.$router.push({ name: 'updatequestions', query: { title: titleOne } })
+            try {
+                const title = this.$route.query.title;
+                console.log(title);
+                const token = await localStorage.getItem('token')
+                const questiondetails = await axios.get(import.meta.env.VITE_APIURL + '/update-questions', { headers: { Authorization: "bearer " + token }, params: { title } })
+                // console.log(questiondetails);
+                // this.questions = questiondetails.data.data;
+                console.log(updated);
+                swal("Question Updated");
+            }
+            catch (err) {
+                console.log(err);
+            }
         }
     },
     mounted(){
