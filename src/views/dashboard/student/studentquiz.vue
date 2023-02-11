@@ -1,20 +1,29 @@
 <template>
-    <v-card width="1200"  >
-        <v-card class="d-inline-block ma-6" v-for="item in values" :key="item._id" height="300px" width="200px">
-            <v-img src="https://neteims.com/wp-content/themes/ims/assets/images/online-exam-portal-2.svg" height="100px" cover></v-img>
-            <v-card-item>
-                <v-card-title>
-                    {{ item.title }}
-                </v-card-title>
-                <v-card-subtitle>
-                    Attempt in one go
-                </v-card-subtitle>
-            </v-card-item>
-            <v-card-text variant="outlined">{{ item.description }}
-            </v-card-text>
-            <v-btn @click="gotoquestion(item.title)" variant="text" color="teal-accent-4">Start</v-btn>
-        </v-card>
-    </v-card>
+    <v-container fluid>
+    <v-row justify="center">
+        <v-col >
+            <v-card color="#FFEBEE">
+                <v-card class="d-inline-block ma-6" v-for="item in values" :key="item._id" height="300px" width="240px">
+
+                    <v-card-item>
+                        <v-card-title>
+                            {{ item.title }}
+                        </v-card-title>
+                        <v-card-subtitle>
+                            Attempt in one go
+                        </v-card-subtitle>
+                    </v-card-item>
+                    <v-img src="https://neteims.com/wp-content/themes/ims/assets/images/online-exam-portal-2.svg"
+                        height="100px" cover></v-img>
+                    <v-card-text variant="outlined">{{ item.description }}
+                    </v-card-text>
+                    <v-btn @click="gotoquestion(item.title)" variant="text" color="teal-accent-4">Start</v-btn>
+                </v-card>
+            </v-card>
+        </v-col>
+    </v-row>
+</v-container>
+
 </template>
 
 <script>
@@ -37,8 +46,8 @@ export default {
     },
     methods: {
         async getquiz() {
-        const token = await localStorage.getItem('token')
-        const quizdetails = await axios.get(import.meta.env.VITE_APIURL + '/get-quiz',{headers:{Authorization:"bearer " + token}});
+            const token = await localStorage.getItem('token')
+            const quizdetails = await axios.get(import.meta.env.VITE_APIURL + '/get-quiz', { headers: { Authorization: "bearer " + token } });
             // console.log(quizdetails);
             // console.log(quizdetails.data.data);
             this.values = quizdetails.data.data;
@@ -51,11 +60,11 @@ export default {
             // return value;
             console.log(this.values);
         },
-        async gotoquestion(titleOne){
-            this.$router.push({name:'studentquestions',query:{title:titleOne}})
+        async gotoquestion(titleOne) {
+            this.$router.push({ name: 'studentquestions', query: { title: titleOne } })
         }
     },
-    mounted(){
+    mounted() {
         this.getquiz()
     }
 }
@@ -67,4 +76,5 @@ export default {
     opacity: 1 !important;
     position: absolute;
     width: 100%;
-}</style>
+}
+</style>

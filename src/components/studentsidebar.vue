@@ -34,13 +34,13 @@ export default {
     name: 'studentsidebar',
     data() {
         return {
-            items: [
-                { title: 'Home', icon: 'mdi-home-account', route: '/student/dashboard/view' },
-                { title: 'Profile', icon: 'mdi-account', route: '/student/dashboard/profile' },
-                { title: 'Go to quiz', icon: 'mdi-folder-question', route: '/student/dashboard/quiz' },
-                // { title: 'Logout', icon: 'mdi-logout', route: '/student/login' },
-            ],
-            model: 1,
+            // items: [
+            //     { title: 'Home', icon: 'mdi-home-account', route: '/student/dashboard/view' },
+            //     { title: 'Profile', icon: 'mdi-account', route: '/student/dashboard/profile' },
+            //     { title: 'Go to quiz', icon: 'mdi-folder-question', route: '/student/dashboard/quiz' },
+            //     // { title: 'Logout', icon: 'mdi-logout', route: '/student/login' },
+            // ],
+            // model: 1,
         }
     },
 }

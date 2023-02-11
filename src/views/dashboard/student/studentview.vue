@@ -1,22 +1,48 @@
 <template>
-  <v-card maxwidth="200"><h2>Welcome to Student dashboard page</h2></v-card>
-      <!-- <div class="image">
-        <img src="../../../assets/student learning.jpg" alt="student-image">
-      </div> -->
+  <container fluid>
+        <v-row >
+          <v-col>
+            <v-card class="mx-auto" color="#1A237E">
+              <v-card-item>
+                <v-card-text class="text-center"><span style="font-size:xx-large; font-family:'Times New Roman', Times, serif; color:white">
+                  <b>Welcome To Student Dashboard Page</b></span></v-card-text>
+              </v-card-item>
+             
       
-      
+            </v-card>
+          </v-col>
+        </v-row>
+      </container>
+      <v-carousel hide-delimiters>
+    <v-carousel-item
+      v-for="(item,i) in items"
+      :key="i"
+      :src="item.src"
+    ></v-carousel-item>
+  </v-carousel>
       
 </template>
 
 <script>
 export default{
-    name:'studentview'
+    name:'studentview',
+    data(){
+        return{
+          items: [
+          {
+            src: ' https://d2gg9evh47fn9z.cloudfront.net/1600px_COLOURBOX53975293.jpg',
+          },
+          {
+            src: 'https://d2gg9evh47fn9z.cloudfront.net/1600px_COLOURBOX56371795.jpg',
+          },
+          {
+            src: 'https://d2gg9evh47fn9z.cloudfront.net/1600px_COLOURBOX43458467.jpg',
+          },
+        ]
+        }
+    },
 }
 </script>
 
 <style>
-img{
-  width: 400px;
-  height: 400px;
-}
 </style>

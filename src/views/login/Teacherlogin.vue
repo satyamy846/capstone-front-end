@@ -1,25 +1,24 @@
 <template>
   <mynavbar />
-  <v-row justify="center">
+  <v-row class="image" justify="center">
     <v-col cols="12" sm="10" md="8" lg="6">
       <v-card class="mx-auto my-12" max-width="450" ref="form">
-        <v-card-text>
-          <v-card-title>Faculty Login in</v-card-title>
-          <v-text-field ref="email" label="Email" placeholder="Your Email" type="email" required v-model="email" ></v-text-field>
-          <v-text-field ref="password" label="Passward" placeholder="Your Password" type="password"
-            required v-model="password"></v-text-field>
+        <v-card-text class="text-center">
+          <v-card-title><b>Teacher Log In</b></v-card-title>
+          <v-text-field ref="email" label="Email" placeholder="Your Email" type="email" required
+            v-model="email"></v-text-field>
+          <v-text-field ref="email" label="Passward" placeholder="Your Password" type="password" required
+            v-model="password"></v-text-field>
+          <v-btn block color="info" @click="login" class="mb-4">Log In</v-btn>
+
+
+
+
+          <span>Haven't Registered?</span>
+          <router-link class="ml-1" style="text-decoration: none;" :to="{ name: 'teachersignup' }">
+            Sign Up</router-link>
 
         </v-card-text>
-        <v-divider class="mt-2"></v-divider>
-        <v-card-actions>
-          <v-card-text>
-            <v-btn depressed  color="success" @click="login">Sign In</v-btn>
-            <p>Haven't registered?</p>
-            <router-link style="text-decoration: none; color: inherit;" :to="{ name: 'teachersignup' }" tag="v-btn"><v-btn
-                color="primary">Sign up</v-btn></router-link>
-          </v-card-text>
-          <v-spacer></v-spacer>
-        </v-card-actions>
       </v-card>
     </v-col>
   </v-row>
@@ -76,10 +75,13 @@ export default {
             localStorage.setItem('teacherlastname',result.data.teacher[0].lastname);
             localStorage.setItem('teacheremail',result.data.teacher[0].email);
             localStorage.setItem('teachercontact',result.data.teacher[0].contact);
+            // localStorage.setItem('teacher_flag',true);
+            // localStorage.setItem('student_flag',false);
           
       }
       catch (err) {
-        console.log(err);
+        alert("User not found")
+        console.log("Please Enter valid data \n" + err);
       }
       
     },

@@ -1,13 +1,12 @@
 <template>
     <mynavbar />
-    <!-- <h1>333</h1> -->
     <form action="POST" >
         <v-form>
             <v-row justify="center">
                 <v-col cols="12" sm="10" md="8" lg="6">
-                    <v-card class="mx-auto my-12 mt-0" max-width="500" ref="form" >
-                        <v-card-text>
-                            <v-card-title>Faculty Register</v-card-title>
+                    <v-card class="mx-auto my-12 mt-1" max-width="500" ref="form" >
+                        <v-card-text class="text-center">
+                            <v-card-title>Teacher Register</v-card-title>
                             <v-text-field ref="name" label="First Name" placeholder="Enter Your First Name" required
                                 v-model="first_name"></v-text-field>
                                 <!-- <v-btn @click="usermodel">Send</v-btn> -->
@@ -27,32 +26,15 @@
                             <v-text-field ref="name" label="Contact" placeholder="Contact Number" required
                                 v-model="contact"></v-text-field>
                                 <v-spacer></v-spacer>
-                            <v-btn @click="signup" rounded color="primary"  dark>
+                            <v-btn block @click="signup" color="primary"  dark class="mb-3">
                                 Register
                             </v-btn>
-                            <v-spacer></v-spacer>
-                            <p >Already registered?</p>
-                            <router-link style="text-decoration: none; color: inherit;" :to="{name:'teacherlogin'}" tag="btn-primary">Sign in</router-link>
-                            <v-spacer></v-spacer>
+                            
+                            <span>Already Registered?</span>
+          <router-link class="ml-1" style="text-decoration: none;" :to="{ name: 'teacherlogin' }">
+            Log In</router-link>
                         </v-card-text>
-
-
                     </v-card>
-                    <!-- <div class="text-center">
-                        <v-btn dark color="orange darken-2" @click="snackbar = true">
-                            Open Snackbar
-                        </v-btn>
-
-                        <v-snackbar v-model="snackbar" :timeout="timeout">
-                            {{ text }}
-
-                            <template v-slot:action="{ attrs }">
-                                <v-btn color="blue" text v-bind="attrs" @click="snackbar = false">
-                                    Close
-                                </v-btn>
-                            </template>
-                        </v-snackbar>
-                    </div> -->
                 </v-col>
             </v-row>
         </v-form>
