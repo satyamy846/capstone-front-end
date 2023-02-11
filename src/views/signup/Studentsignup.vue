@@ -2,14 +2,14 @@
     <mynavbar/>
     <form action="POST" >
         <v-form>
-
             <v-row justify="center">
                 <v-col cols="12" sm="10" md="8" lg="6">
-                    <v-card class="mx-auto my-12 mt-2" max-width="500" ref="form" >
-                        <v-card-text>
+                    <v-card class="mx-auto my-12 mt-1" max-width="500" ref="form" >
+                        <v-card-text class="text-center">
                             <v-card-title>Student Register</v-card-title>
                             <v-text-field ref="name" label="First Name" placeholder="Enter Your First Name" required
                                 v-model="first_name"></v-text-field>
+                                <!-- <v-btn @click="usermodel">Send</v-btn> -->
 
                             <v-text-field ref="name" label="Last Name" placeholder="Enter Your Last Name" required
                                 v-model="last_name"></v-text-field>
@@ -25,18 +25,15 @@
 
                             <v-text-field ref="name" label="Contact" placeholder="Contact Number" required
                                 v-model="contact"></v-text-field>
-                            
-                            <v-btn rounded color="primary" @click="studentRegistration" dark>
+                                <v-spacer></v-spacer>
+                            <v-btn block @click="studentRegistration" color="primary"  dark class="mb-3">
                                 Register
                             </v-btn>
-                            <v-spacer></v-spacer>
-                            <p >Already registered?</p>
-                            <router-link style="text-decoration: none; color: inherit;" :to="{name:'studentlogin'}" tag="v-btn">Sign in</router-link>
                             
-
+                            <span>Already registered?</span>
+                            <router-link class="ml-1" style="text-decoration: none;" :to="{ name: 'studentlogin' }" >
+                                Log In</router-link>
                         </v-card-text>
-
-
                     </v-card>
                 </v-col>
             </v-row>

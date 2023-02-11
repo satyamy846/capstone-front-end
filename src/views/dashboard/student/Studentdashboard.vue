@@ -13,7 +13,7 @@
         </div>
     </div> -->
     
-    <v-container fluid >
+    <!-- <v-container fluid >
         <v-row wrap>
             <v-col md-2 xs-12>
                 <studentsidebar/>
@@ -23,7 +23,11 @@
                 <router-view></router-view>
             </v-col>
         </v-row>
-    </v-container>
+    </v-container> -->
+
+    <router-view></router-view>
+
+    <!-- <studentprofile/> -->
 <!-- <div class="bootstrap-wrapper">
     <div class="container-fluid">
         <div class="row">
@@ -40,7 +44,7 @@
 </template>
 
 <script>
-import navbar from '../../../components/navbar/dashboardnavbar.vue';
+import navbar from '../../../components/navbar/studentnavbar.vue';
 import studentsidebar from '../../../components/studentsidebar.vue';
 import studentprofile from './studentprofile.vue';
 import studentquiz from './studentquiz.vue';
@@ -49,7 +53,7 @@ export default{
 
     components:{
         navbar,
-        studentsidebar,
+        // studentsidebar,
         studentprofile,
         studentquiz
     }
@@ -58,7 +62,7 @@ export default{
 </script>
 
 <style>
-    body{
+    /* body{
         background-color: #E3F2FD;
-    }
+    } */
 </style>

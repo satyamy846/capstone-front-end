@@ -18,19 +18,22 @@ const router = createRouter({
           path: 'register',
           name: 'studentsignup',
           component: () => import('../views/signup/Studentsignup.vue'),
-          meta:{auth:false}
+          meta:{guest:true}
         },
         {
           path: 'login',
           name: 'studentlogin',
           component: () => import('../views/login/Studentlogin.vue'),
-          meta:{auth:false}
+          meta:{guest:true}
         },
         {
           path: 'dashboard',
           name: 'studentdashboard',
           component:()=>import('../views/dashboard/student/Studentdashboard.vue'),
-          meta:{auth:true},
+          meta:{
+            requiresAuth:true,
+            
+          },
           children: [
             {
               path: 'view',
@@ -66,19 +69,26 @@ const router = createRouter({
           path: 'signup',
           name: 'teachersignup',
           component: () => import('../views/signup/TeacherSignup.vue'),
-          meta:{auth:false}
+          meta:{
+            guest:true
+          }
         },
         {
           path: 'login',
           name: 'teacherlogin',
           component: () => import('../views/login/Teacherlogin.vue'),
-          meta:{auth:false}
+          meta:{
+            guest:true
+          }
         },
         {
           path: '/teacher/dashboard',
           name: 'teacherdashboard',
           component:()=>import('../views/dashboard/teacher/Teacherdashboard.vue'),
-          meta:{auth:true},
+          meta:{
+            requiresAuth:true,
+            is_teacher:true
+          },
           children: [
             {
               path:'view',
@@ -87,7 +97,7 @@ const router = createRouter({
             },
             {
               path: 'profile',
-              name: 'profile',
+              name: 'teacherprofile',
               component: () => import('../views/dashboard/teacher/profile.vue')
             },
             {
@@ -133,28 +143,50 @@ const router = createRouter({
   ]
 })
 
-router.beforeEach((to, from,next)=>{
-  // console.log(to);
-  //check if user is not authenticated and trying to access the dashboard page
-  const token = localStorage.getItem('token');
-  if(to.meta.auth && !token ){
-    next({name:'home'});
-  }
-  // else if(to.meta.auth && !token ){
-  //   next({name:'teacherlogin'});
-  // }
-  else if(!to.meta.auth && token){
-    //if we have the token so it will keep us stay at the same page
-    next({name:'studentdashboard'});
-  }
-  else{
-    next();
-  }
-});
+// const token = localStorage.getItem('token');
+// router.beforeEach((to,from,next)=>{
 
-// window.onload = function() {
-//   localStorage.clear();
-//   return '';
-// };
+//   //check if user is verified user or not
+//   if(to.matched.some(record=>record.meta.requiresAuth)){
+//     //check if that user has token or not
+    
+//     if(token == ''){
+//       //user don't have token
+//       next({name:'home'})
+//     }
+//     else{
+//       //if it has token then check the user info(student or teacher)
+//       let user = JSON.parse(localStorage.getItem('user'))
+
+//       if(to.matched.some(record=>record.meta.is_teacher)){
+//         //if teacher is trying to login
+//         if(user.Isteacher == true){
+//           next()
+//         }
+//         else{
+//           //student is tring to login
+//           next({name:'studentview'})
+//         }
+//       }
+//       else{
+//         next();
+//       }
+//     }
+//   }
+//   //anyone is trying to login who is not verified user
+//   else if(to.matched.some(record=>record.meta.guest)){
+//     if(token == ''){
+//       next();
+//     }
+//     else{
+//       next({name:'studentview'})
+//     }
+//   }
+//   else{
+//     next();
+//   }
+
+
+// })
 
 export default router

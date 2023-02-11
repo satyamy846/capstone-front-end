@@ -13,7 +13,7 @@
         </div>
     </div> -->
 
-    <v-container fluid>
+    <!-- <v-container fluid>
         <v-row wrap >
             <v-col md-6 xs-12>
                 <sidebar/>
@@ -23,17 +23,19 @@
                 <router-view></router-view>
             </v-col>
         </v-row>
-    </v-container>
+    </v-container> -->
 
+    <router-view></router-view>
 </template>
 
 
 <script>
-import navbar from '../../../components/navbar/dashboardnavbar.vue';
+import navbar from '../../../components/navbar/teachernavbar.vue';
 import sidebar from '../../../components/sidebar.vue';
 import profile from './profile.vue';
 import quiz from './quiz.vue';
-import teacherview from './teacherview.vue';
+import footer from '../../../components/footer.vue';
+
 export default {
     name: 'Teacherdashboard',
     components: {
@@ -41,7 +43,7 @@ export default {
         sidebar,
         profile,
         quiz,
-        teacherview
+        footer,
     },
     data() {
         return {
@@ -55,7 +57,7 @@ export default {
 </script>
 
 <style>
-body{
+/* body{
     background-color: #E3F2FD;
-}
+} */
 </style>

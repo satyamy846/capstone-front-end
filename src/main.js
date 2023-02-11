@@ -18,7 +18,12 @@ const vuetify = createVuetify({
     icons:{
       iconfont:'mdisvg',
     },
+    buttons: {
+      capitalize: false,
+  },
   });
+
+  
 
 
 const app = createApp(App)
