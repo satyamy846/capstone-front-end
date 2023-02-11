@@ -17,7 +17,7 @@
 	<p>Try it first</p>
 </div> -->
 <div>
-	<img src="../../assets/dell-Gi3iUJ1FwxI-unsplash (1).jpg" class="img-fluid w-100" alt="">
+	<img src="../../assets/dellLaptop.jpg" class="img-fluid w-100" alt="">
 </div>
 
 
