@@ -35,7 +35,7 @@ export default{
                 const title = this.$route.query.title;
                 console.log(title);
                 const token = await localStorage.getItem('token')
-                const questiondetails = await axios.get('http://localhost:5000/get-questions', { headers: { Authorization: "bearer " + token }, params: { title } })
+                const questiondetails = await axios.get( import.meta.env.VITE_APIURL + '/get-questions', { headers: { Authorization: "bearer " + token }, params: { title } })
                 console.log(questiondetails);
                 this.questions = questiondetails.data.data;
             }
