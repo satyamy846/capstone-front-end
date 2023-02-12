@@ -47,7 +47,7 @@ export default {
     methods: {
         async getquiz() {
             const token = await localStorage.getItem('token');
-            const quizdetails = await axios.get('http://localhost:5000/get-quiz', { headers: { Authorization: "bearer " + token } });
+            const quizdetails = await axios.get( import.meta.env.VITE_APIURL + '/get-quiz', { headers: { Authorization: "bearer " + token } });
             // console.log(quizdetails);
             // console.log(quizdetails.data.data);
             this.values = quizdetails.data.data;
