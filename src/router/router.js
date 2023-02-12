@@ -6,7 +6,10 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: () => import('../views/HomePage/Home.vue')
+      component: () => import('../views/HomePage/Home.vue'),
+      meta:{
+        logingaurd:true
+      }
     },
 
     {
@@ -18,13 +21,13 @@ const router = createRouter({
           path: 'register',
           name: 'studentsignup',
           component: () => import('../views/signup/Studentsignup.vue'),
-          // meta:{guest:true}
+          meta:{logingaurd:true}
         },
         {
           path: 'login',
           name: 'studentlogin',
           component: () => import('../views/login/Studentlogin.vue'),
-          meta:{studentgaurd:true}
+          meta:{logingaurd:true}
         },
         {
           path: 'dashboard',
@@ -46,17 +49,29 @@ const router = createRouter({
             {
               path: 'quiz',
               name: 'studentquiz',
-              component: () => import('../views/dashboard/student/studentquiz.vue')
+              component: () => import('../views/dashboard/student/studentquiz.vue'),
+              meta:{
+                studentgaurd:true,
+                
+              },
             },
             {
               path: 'profile',
               name: 'studentprofile',
-              component: () => import('../views/dashboard/student/studentprofile.vue')
+              component: () => import('../views/dashboard/student/studentprofile.vue'),
+              meta:{
+                studentgaurd:true,
+                
+              },
             },
             {
               path: 'questions',
               name: 'studentquestions',
-              component: () => import('../views/dashboard/student/questions.vue')
+              component: () => import('../views/dashboard/student/questions.vue'),
+              meta:{
+                studentgaurd:true,
+                
+              },
             }
           ]
         }
@@ -72,16 +87,14 @@ const router = createRouter({
           path: 'signup',
           name: 'teachersignup',
           component: () => import('../views/signup/TeacherSignup.vue'),
-          // meta:{
-          //   guest:true
-          // }
+          meta:{logingaurd:true}
         },
         {
           path: 'login',
           name: 'teacherlogin',
           component: () => import('../views/login/Teacherlogin.vue'),
           meta:{
-            teachergaurd:true
+            logingaurd:true
           }
         },
         {
@@ -104,37 +117,58 @@ const router = createRouter({
             {
               path: 'profile',
               name: 'teacherprofile',
-              component: () => import('../views/dashboard/teacher/profile.vue')
+              component: () => import('../views/dashboard/teacher/profile.vue'),
+              meta:{
+                teachergaurd:true
+              }
             },
             {
               path: 'addquiz',
               name: 'addquiz',
-              component: () => import('../views/dashboard/teacher/addquiz.vue')
+              component: () => import('../views/dashboard/teacher/addquiz.vue'),
+              meta:{
+                teachergaurd:true
+              }
             },
             {
               path: 'quizes',
               name: 'quiz',
-              component: () => import('../views/dashboard/teacher/quiz.vue')
+              component: () => import('../views/dashboard/teacher/quiz.vue'),
+              meta:{
+                teachergaurd:true
+              }
             },
             {
               path: 'updatequestions',
               name: 'updatequestions',
-              component: () => import('../views/dashboard/teacher/updatequestions.vue')
+              component: () => import('../views/dashboard/teacher/updatequestions.vue'),
+              meta:{
+                teachergaurd:true
+              }
             },
             {
               path: 'updatequiz',
               name: 'updatequiz',
-              component: () => import('../views/dashboard/teacher/updatequiz.vue')
+              component: () => import('../views/dashboard/teacher/updatequiz.vue'),
+              meta:{
+                teachergaurd:true
+              }
             },
             {
               path: 'addquestions',
               name: 'addquestions',
-              component: () => import('../views/dashboard/teacher/addquestions.vue')
+              component: () => import('../views/dashboard/teacher/addquestions.vue'),
+              meta:{
+                teachergaurd:true
+              }
             },
             {
               path:'viewquiz',
               name:'viewquizpage',
-              component:()=>import('../views/dashboard/teacher/viewquiz.vue')
+              component:()=>import('../views/dashboard/teacher/viewquiz.vue'),
+              meta:{
+                teachergaurd:true
+              }
             }
 
           ]
@@ -198,27 +232,65 @@ const router = createRouter({
 // const token = localStorage.getItem('token');
 
 router.beforeEach((to,from,next)=>{
-    if(to.meta.studentgaurd){
+  console.log(to);
+  console.log("from" ,from);
+  // next();
+    if(to.meta.logingaurd){
       const Isstudent = localStorage.getItem('Isstudent');
       const token = localStorage.getItem('token');
-      if(Isstudent == true && token){
-        next({name:'studentview'});
+      const Isteacher = localStorage.getItem('Isteacher');
+      if(Isstudent=="true"){
+        next({name:'studentview'})
+      }
+      else if(Isteacher== "true"){
+        next({name:'teacherview'})
       }
       else{
-        next({name:'studentlogin'});
+
+        next();
       }
     }
-    else{
-      next();
+   else if(to.meta.studentgaurd){
+      const Isstudent = localStorage.getItem('Isstudent');
+      const token = localStorage.getItem('token');
+      const Isteacher = localStorage.getItem('Isteacher');
+      // if(Isstudent == true && token){
+      //   next({name:'studentview'});
+      // }
+      // else{
+      //   next({name:'studentlogin'})
+      // }
+      // if(token==null){
+      //   next({name:'home'})
+      // }
+      // else if(Isstudent==null && Isteacher == "true" ){
+      //   next({name:'home'});
+      // }
+      // else{
+      //   next();
+      // }
+      if(Isstudent!="true"){
+        next({name:'home'})
+      }
+      else{
+        next()
+      }
     }
-    if(to.meta.teachergaurd){
+    
+    else if(to.meta.teachergaurd){
       const Isteacher = localStorage.getItem('Isteacher');
       const token = localStorage.getItem('token');
-      if(Isteacher == true && token){
-        next({name:'teacherview'});
+      // if(Isteacher == true && token){
+      //   next({name:'teacherview'});
+      // }
+      // else{
+      //   next({name:'teacherlogin'});
+      // }
+      if(Isteacher!="true"){
+        next({name:'home'})
       }
       else{
-        next({name:'teacherlogin'});
+        next();
       }
     }
     else{
