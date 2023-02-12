@@ -75,6 +75,7 @@ export default {
             localStorage.setItem('teacherlastname',result.data.teacher[0].lastname);
             localStorage.setItem('teacheremail',result.data.teacher[0].email);
             localStorage.setItem('teachercontact',result.data.teacher[0].contact);
+            localStorage.setItem('Isteacher',result.data.teacher[0].Isteacher);
             // localStorage.setItem('teacher_flag',true);
             // localStorage.setItem('student_flag',false);
           

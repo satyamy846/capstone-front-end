@@ -70,6 +70,7 @@ export default {
             localStorage.setItem('userlastname', result.data.user.lastname);
             localStorage.setItem('useremail', result.data.user.email);
             localStorage.setItem('usercontact', result.data.user.contact);
+            localStorage.setItem('Isstudent',result.data.user.Isstudent);
             // localStorage.setItem('student_flag', true);
             // localStorage.setItem('teacher_flag', false)
 

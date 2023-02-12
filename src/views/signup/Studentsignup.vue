@@ -25,7 +25,8 @@
 
                             <v-text-field ref="name" label="Contact" placeholder="Contact Number" required
                                 v-model="contact"></v-text-field>
-                                <v-spacer></v-spacer>
+
+                                <v-checkbox label="Yes I am a Student" v-model="Isstudent"></v-checkbox>
                             <v-btn block @click="studentRegistration" color="primary"  dark class="mb-3">
                                 Register
                             </v-btn>
@@ -60,6 +61,7 @@ import mynavbar from '../../components/navbar/Homenavbar.vue';
             email: '',
             password: '',
             contact: '',
+            Isstudent:true
             }   
         },
         methods:{
@@ -71,7 +73,8 @@ import mynavbar from '../../components/navbar/Homenavbar.vue';
                     lastname: this.last_name,
                     email: this.email,
                     password: this.password,
-                    contact: this.contact
+                    contact: this.contact,
+                    Isstudent:this.Isstudent
                     })
                     console.log(details);
                     swal("Successfully Registered", "success");

@@ -18,27 +18,30 @@ const router = createRouter({
           path: 'register',
           name: 'studentsignup',
           component: () => import('../views/signup/Studentsignup.vue'),
-          meta:{guest:true}
+          // meta:{guest:true}
         },
         {
           path: 'login',
           name: 'studentlogin',
           component: () => import('../views/login/Studentlogin.vue'),
-          meta:{guest:true}
+          meta:{studentgaurd:true}
         },
         {
           path: 'dashboard',
           name: 'studentdashboard',
           component:()=>import('../views/dashboard/student/Studentdashboard.vue'),
           meta:{
-            requiresAuth:true,
+            studentgaurd:true,
             
           },
           children: [
             {
               path: 'view',
               name: 'studentview',
-              component: () => import('../views/dashboard/student/studentview.vue')
+              component: () => import('../views/dashboard/student/studentview.vue'),
+              meta:{
+                studentgaurd:true
+              }
             },
             {
               path: 'quiz',
@@ -69,16 +72,16 @@ const router = createRouter({
           path: 'signup',
           name: 'teachersignup',
           component: () => import('../views/signup/TeacherSignup.vue'),
-          meta:{
-            guest:true
-          }
+          // meta:{
+          //   guest:true
+          // }
         },
         {
           path: 'login',
           name: 'teacherlogin',
           component: () => import('../views/login/Teacherlogin.vue'),
           meta:{
-            guest:true
+            teachergaurd:true
           }
         },
         {
@@ -86,14 +89,17 @@ const router = createRouter({
           name: 'teacherdashboard',
           component:()=>import('../views/dashboard/teacher/Teacherdashboard.vue'),
           meta:{
-            requiresAuth:true,
-            is_teacher:true
+            teachergaurd:true,
+            // is_teacher:true
           },
           children: [
             {
               path:'view',
               name:'teacherview',
               component:()=>import('../views/dashboard/teacher/teacherview.vue'),
+              meta:{
+                teachergaurd:true
+              }
             },
             {
               path: 'profile',
@@ -156,11 +162,11 @@ const router = createRouter({
 //     }
 //     else{
 //       //if it has token then check the user info(student or teacher)
-//       let user = JSON.parse(localStorage.getItem('user'))
+//       let Isteacher = JSON.parse(localStorage.getItem('Isteacher'))
 
 //       if(to.matched.some(record=>record.meta.is_teacher)){
 //         //if teacher is trying to login
-//         if(user.Isteacher == true){
+//         if(Isteacher == true){
 //           next()
 //         }
 //         else{
@@ -174,19 +180,50 @@ const router = createRouter({
 //     }
 //   }
 //   //anyone is trying to login who is not verified user
-//   else if(to.matched.some(record=>record.meta.guest)){
-//     if(token == ''){
-//       next();
-//     }
-//     else{
-//       next({name:'studentview'})
-//     }
-//   }
+//   // else if(to.matched.some(record=>record.meta.guest)){
+//   //   if(token == ''){
+//   //     next();
+//   //   }
+//   //   else{
+//   //     next({name:'studentview'})
+//   //   }
+//   // }
 //   else{
 //     next();
 //   }
 
 
 // })
+
+// const token = localStorage.getItem('token');
+
+router.beforeEach((to,from,next)=>{
+    if(to.meta.studentgaurd){
+      const Isstudent = localStorage.getItem('Isstudent');
+      const token = localStorage.getItem('token');
+      if(Isstudent == true && token){
+        next({name:'studentview'});
+      }
+      else{
+        next({name:'studentlogin'});
+      }
+    }
+    else{
+      next();
+    }
+    if(to.meta.teachergaurd){
+      const Isteacher = localStorage.getItem('Isteacher');
+      const token = localStorage.getItem('token');
+      if(Isteacher == true && token){
+        next({name:'teacherview'});
+      }
+      else{
+        next({name:'teacherlogin'});
+      }
+    }
+    else{
+      next();
+    }
+})
 
 export default router
