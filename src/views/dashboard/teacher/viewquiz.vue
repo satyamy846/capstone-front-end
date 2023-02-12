@@ -38,7 +38,7 @@
                     <v-card-actions>
                         <v-btn color="primary" :to="{path:'/teacher/dashboard/quizes'}">Go Back</v-btn>
                         <v-spacer></v-spacer>
-                        <v-btn class="ma-4" color="success" @click="submission">Submit</v-btn>
+                        <!-- <v-btn class="ma-4" color="success" @click="submission">Submit</v-btn> -->
                     </v-card-actions>
                     
                    

@@ -62,17 +62,20 @@ export default {
             swal("You are logged in", "success");
             console.log(result);
             // console.log(result.data.user.contact);
-            this.$router.push({ path: "/student/dashboard/view", replace: true });
-
+            
             localStorage.setItem('token', result.data.token);
             // localStorage.setItem('user',JSON.stringify(result.data.user));
             localStorage.setItem('userfirstname', result.data.user.firstname);
             localStorage.setItem('userlastname', result.data.user.lastname);
             localStorage.setItem('useremail', result.data.user.email);
             localStorage.setItem('usercontact', result.data.user.contact);
+            localStorage.setItem('Isstudent',result.data.user.Isstudent);
             // localStorage.setItem('student_flag', true);
-            // localStorage.setItem('teacher_flag', false)
-
+            // localStorage.setItem('teacher_flag', false);
+            const  key = await localStorage.getItem('Isstudent')
+            console.log("login ",key);
+            
+            this.$router.push({ path: "/student/dashboard/view", replace: true });
           }
 
          

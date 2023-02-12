@@ -20,10 +20,12 @@
       :src="item.src"
     ></v-carousel-item>
   </v-carousel>
-      
+      <footer/>
 </template>
 
 <script>
+
+import footer from '../../../components/footer.vue';
 export default{
     name:'studentview',
     data(){
@@ -41,6 +43,9 @@ export default{
         ]
         }
     },
+    components:{
+      footer
+    }
 }
 </script>
 

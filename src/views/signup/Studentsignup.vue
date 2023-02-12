@@ -25,7 +25,8 @@
 
                             <v-text-field ref="name" label="Contact" placeholder="Contact Number" required
                                 v-model="contact"></v-text-field>
-                                <v-spacer></v-spacer>
+
+                                <v-checkbox label="Yes I am a Student" v-model="Isstudent"></v-checkbox>
                             <v-btn block @click="studentRegistration" color="primary"  dark class="mb-3">
                                 Register
                             </v-btn>
@@ -60,20 +61,24 @@ import mynavbar from '../../components/navbar/Homenavbar.vue';
             email: '',
             password: '',
             contact: '',
+            Isstudent:true
             }   
         },
         methods:{
             async studentRegistration(){
                 try{
                     console.log(this.email,this.password);
-                    const details = await axios.post(import.meta.env.VITE_APIURL + "/student",{
+                    // http//:localhost:5000/student
+                    const details = await axios.post( import.meta.env.VITE_APIURL + "/student",{
                     firstname:this.first_name,
                     lastname: this.last_name,
                     email: this.email,
                     password: this.password,
-                    contact: this.contact
+                    contact: this.contact,
+                    Isstudent:this.Isstudent
                     })
                     console.log(details);
+                    console.log(import.meta.env.VITE_APIURL)
                     swal("Successfully Registered", "success");
                     await this.$router.push({name:"studentlogin"});
                     

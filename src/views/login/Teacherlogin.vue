@@ -69,12 +69,13 @@ export default {
             // })
             // console.log(result.data.teacher);
             //setting up the token which is generated while login in localstorage so that teacher's profile 
-            // still remains logged in unless we remove token from localstorage
+            // still remained logged in unless we remove token from localstorage
             localStorage.setItem('token',result.data.token);
             localStorage.setItem('teacherfirstname',result.data.teacher[0].firstname);
             localStorage.setItem('teacherlastname',result.data.teacher[0].lastname);
             localStorage.setItem('teacheremail',result.data.teacher[0].email);
             localStorage.setItem('teachercontact',result.data.teacher[0].contact);
+            localStorage.setItem('Isteacher',result.data.teacher[0].Isteacher);
             // localStorage.setItem('teacher_flag',true);
             // localStorage.setItem('student_flag',false);
           

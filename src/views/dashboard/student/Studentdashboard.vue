@@ -40,7 +40,7 @@
     </div>
     </div>
 </div> -->
-    
+    <!-- <footer/> -->
 </template>
 
 <script>
@@ -48,6 +48,7 @@ import navbar from '../../../components/navbar/studentnavbar.vue';
 import studentsidebar from '../../../components/studentsidebar.vue';
 import studentprofile from './studentprofile.vue';
 import studentquiz from './studentquiz.vue';
+import footer from '../../../components/footer.vue';
 export default{
     name:'studentdashboard',
 
@@ -55,14 +56,16 @@ export default{
         navbar,
         // studentsidebar,
         studentprofile,
-        studentquiz
+        studentquiz,
+        footer
     }
 }
 
 </script>
 
 <style>
-    /* body{
-        background-color: #E3F2FD;
-    } */
+body{
+    background-color: #FFCDD2;
+    background-size: cover;
+}
 </style>

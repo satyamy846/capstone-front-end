@@ -25,7 +25,9 @@
 
                             <v-text-field ref="name" label="Contact" placeholder="Contact Number" required
                                 v-model="contact"></v-text-field>
-                                <v-spacer></v-spacer>
+
+                            <v-checkbox label="Yes I am a Teacher" v-model="Isteacher"></v-checkbox>
+
                             <v-btn block @click="signup" color="primary"  dark class="mb-3">
                                 Register
                             </v-btn>
@@ -61,6 +63,7 @@ export default {
             email: '',
             password: '',
             contact: '',
+            Isteacher:true,
         }
     },
     // validations:{
@@ -80,7 +83,8 @@ export default {
                     lastname: this.last_name,
                     email: this.email,
                     password: this.password,
-                    contact: this.contact
+                    contact: this.contact,
+                    Isteacher:this.Isteacher
                 });
                 swal("Successfully Registered", "success");
                 console.log(result.data)
