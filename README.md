@@ -4,7 +4,7 @@
 ## Front End repo link - https://github.com/satyamy846/capstone-front-end.git
 ## Back End repo link - https://github.com/satyamy846/capstone_back-end.git
 
-### Tech Stack
+## Tech Stack
 #### Front End - VueJs,Vuetify,Bootstrap,HTML,CSS
 #### Back End - NodeJs, ExpressJs(Framework)
 #### Database - MongoDb (hosted On MongoDb Atlas)
