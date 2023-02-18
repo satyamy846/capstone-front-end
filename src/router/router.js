@@ -232,8 +232,8 @@ const router = createRouter({
 // const token = localStorage.getItem('token');
 
 router.beforeEach((to,from,next)=>{
-  console.log(to);
-  console.log("from" ,from);
+  // console.log(to);
+  // console.log("from" ,from);
   // next();
     if(to.meta.logingaurd){
       const Isstudent = localStorage.getItem('Isstudent');
