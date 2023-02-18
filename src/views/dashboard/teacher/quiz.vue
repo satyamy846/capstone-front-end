@@ -50,6 +50,7 @@ export default {
             const quizdetails = await axios.get( import.meta.env.VITE_APIURL + '/get-quiz', { headers: { Authorization: "bearer " + token } });
             // console.log(quizdetails);
             // console.log(quizdetails.data.data);
+            console.log(quizdetails);
             this.values = quizdetails.data.data;
             // value.forEach((item,index )=>{
             //     const detail1 = item.title;
@@ -58,8 +59,9 @@ export default {
             //     return detail1;
             // })
             // return value;
-            localStorage.setItem('quizId', quizdetails.data.data[0]._id);
-            console.log(quizdetails);
+            // console.log(quizdetails.data.data[0]._id);
+            // localStorage.setItem('quizId', quizdetails.data.data[0]._id);
+            
         },
         // async updatequestions(titleOne,id) {
         //     //update the questions;
@@ -71,8 +73,9 @@ export default {
             // const title = this.$router.query.title;
             const token = await localStorage.getItem('token');
             await axios.delete(import.meta.env.VITE_APIURL + '/delete-quiz', { headers: { Authorization: "bearer " + token }, params: { title } })
-            this.$router.push({ name: 'quiz' })
-            swal("Quiz deleted successfully!");
+            await axios.delete(import.meta.env.VITE_APIURL + '/delete-questions', { headers: { Authorization: "bearer " + token }, params: { title } })
+            this.$router.push({ name: 'quiz' });
+            swal("Quiz and their questions deleted successfully!");
             console.log('deleted successfully');
         },
         async viewquiz(titleOne) {
