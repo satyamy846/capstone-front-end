@@ -31,8 +31,4 @@ export default {
 </script>
 
 <style>
-body{
-    background-color: #ECEFF1;
-    background-size: contain;
-}
 </style>
