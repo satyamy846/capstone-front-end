@@ -38,7 +38,7 @@
       <!--Grid column-->
 
       <!--Grid column-->
-      <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+      <div class="col-lg-3 col-md-6 mb-4 mb-md-0 connect-us">
         <h5 class="text-uppercase">Connect Us</h5>
 
         <ul class="list-unstyled mb-0">
@@ -89,23 +89,14 @@ import mynavbar from '../../components/navbar/Homenavbar.vue';
 
 
 <style>
-	/* #container {
-		text-align: center;
-		margin-top:260px ;
-		border: 2px solid rgb(58, 62, 53);
-		
+.row {
+  position: relative;
+}
 
-		
-	}
-	#container h1{
-		color:rgb(56, 172, 204) ;
-		font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-	}
-	#container p{
-		color:rgb(130, 19, 19) ;
-		font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-	} */
-
+.connect-us {
+  position: absolute;
+  right: 10px;
+}
 
 	
 </style>

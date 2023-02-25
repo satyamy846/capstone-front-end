@@ -48,7 +48,6 @@ import navbar from '../../../components/navbar/studentnavbar.vue';
 import studentsidebar from '../../../components/studentsidebar.vue';
 import studentprofile from './studentprofile.vue';
 import studentquiz from './studentquiz.vue';
-import footer from '../../../components/footer.vue';
 export default{
     name:'studentdashboard',
 
@@ -57,15 +56,11 @@ export default{
         // studentsidebar,
         studentprofile,
         studentquiz,
-        footer
     }
 }
 
 </script>
 
 <style>
-body{
-    background-color: #FFCDD2;
-    background-size: cover;
-}
+
 </style>
