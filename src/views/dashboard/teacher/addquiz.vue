@@ -4,7 +4,10 @@
             <v-col>
                     <v-card class="mx-auto" max-width="800">
                         <v-card-item>
-                            <v-card-title class="mt-3">Add Quiz</v-card-title>
+                            <v-card-text class="text-center">
+                                <v-card-title class="mt-3">Add Quiz</v-card-title>
+                            </v-card-text>
+                            
                             <v-text-field label="Title" placeholder="Title" type="text" required
                                 v-model="title"></v-text-field>
                             <v-text-field label="Description" placeholder="Description" type="text" required
