@@ -10,7 +10,6 @@ import navbar from '../../../components/navbar/teachernavbar.vue';
 import sidebar from '../../../components/sidebar.vue';
 import profile from './profile.vue';
 import quiz from './quiz.vue';
-import footer from '../../../components/footer.vue';
 
 export default {
     name: 'Teacherdashboard',
@@ -19,7 +18,6 @@ export default {
         sidebar,
         profile,
         quiz,
-        footer,
     },
     data() {
         return {

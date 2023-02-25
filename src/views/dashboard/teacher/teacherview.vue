@@ -21,6 +21,52 @@
       :src="item.src"
     ></v-carousel-item>
   </v-carousel>
+
+  <footer class="bg-primary text-white text-center mt-6 text-lg-start">
+    <!-- Grid container -->
+    <div class="container p-4">
+      <!--Grid row-->
+      <div class="row">
+        <!--Grid column-->
+        <div class="col-lg-6 col-md-12 mb-4 mb-md-0 disclaimer">
+          <h5 class="text-uppercase">Disclamer</h5>
+
+          <p>
+            Here Student can improve their thinking abilities and keep them consistence, they can give their respective
+            quizes, and see their profiles as well.
+          </p>
+        </div>
+        <!--Grid column-->
+
+        <!--Grid column-->
+        <div class="col-lg-3 col-md-6 mb-4 mb-md-0 connect-us">
+          <h5 class="text-uppercase">Connect Us</h5>
+
+          <ul class="list-unstyled mb-0">
+            <li>
+              <!-- <a href="#!" class="text-white">Link 1</a> -->
+
+            </li>
+            <li>
+              <a href="https://www.linkedin.com/in/satyam-kumar-883190158/" style="text-decoration: none;"
+                class="text-black">Linkedin</a>
+            </li>
+            <li>
+              <a href="https://github.com/satyamy846" style="text-decoration: none;" class="text-black">Github</a>
+            </li>
+          </ul>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Copyright -->
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+      © 2023 Copyright:
+      <a class="text-white" href="#">satyamonlinequiz.com</a>
+    </div>
+  </footer>
+
 </template>
 
 <script>
@@ -43,3 +89,14 @@ export default{
     },
 
 }</script>
+
+<style>
+.row {
+  position: relative;
+}
+
+.connect-us {
+  position: absolute;
+  right: 10px;
+}
+</style>
