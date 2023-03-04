@@ -89,14 +89,17 @@ import mynavbar from '../../components/navbar/Homenavbar.vue';
 
 
 <style>
-.row {
+/* .row {
   position: relative;
 }
 
 .connect-us {
   position: absolute;
   right: 10px;
-}
+} */
 
+.connect-us{
+  margin: auto;
+}
 	
 </style>
