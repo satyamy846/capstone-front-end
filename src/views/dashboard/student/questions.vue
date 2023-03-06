@@ -10,11 +10,11 @@
                         <p><b>Q{{ index+ 1 }}.</b>
                             <span class="ml-2">{{ item.content }}</span>
                         </p>
-                        <v-radio-group class="inline" v-model="radio[index]">
-                            <v-radio :label="` ${item.option1}`" value="radio-1"></v-radio>
-                            <v-radio :label="` ${item.option2}`" value="radio-2"></v-radio>
-                            <v-radio :label="` ${item.option3}`" value="radio-3"></v-radio>
-                            <v-radio :label="` ${item.option4}`" value="radio-4"></v-radio>
+                        <v-radio-group class="inline" v-model="item.selectedAns">
+                            <v-radio :label="` ${item.option1}`" :value=" item.option1" ></v-radio>
+                            <v-radio :label="` ${item.option2}`" :value="item.option2 " ></v-radio>
+                            <v-radio :label="` ${item.option3}`" :value="item.option3" ></v-radio>
+                            <v-radio :label="` ${item.option4}`" :value="item.option4" ></v-radio>
                         </v-radio-group>
                         <!-- <input type="radio"> -->
 
@@ -44,7 +44,7 @@ export default {
             details: null,
             qzarray: [],
             radio: [],
-            titleOne: ''
+            titleOne: '',
         }
     },
     methods: {
@@ -57,6 +57,10 @@ export default {
                 console.log(questiondetails);
                 this.qzarray = questiondetails.data.data;
                 this.titleOne = title;
+                this.qzarray.forEach((q)=>{
+                    q['selectedAns']=''
+                });
+                // console.log(questiondetails.data.data[0].answer);
             }
             catch (err) {
                 console.log(err);
@@ -70,8 +74,18 @@ export default {
                 //     alert("Your answer is correct you scored 10 out of 20")
 
                 // }
+                let count = 0;
+                this.qzarray.forEach((it)=>{
+                    // console.log(it.answer);
+                    console.log(it.selectedAns);
+                    if(it.selectedAns == it.answer){
+                        count++;
+                    }
 
-                swal("Your Submission recorded");
+                })
+                
+                
+                swal(`You scored ${count}`);
             }
             catch (err) {
                 console.log(err);
@@ -79,7 +93,7 @@ export default {
         }
     },
     mounted() {
-        this.getquestions()
+        this.getquestions();
     }
 }
 </script>
