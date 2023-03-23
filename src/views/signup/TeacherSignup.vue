@@ -76,9 +76,22 @@ export default {
             try {
                 if (this.email == '' || this.email == null){
                     alert('Email is required!');
+                }
+                else if(this.first_name == '' || this.first_name == null){
+                    alert('First Name is required');
+                }
+                else if(this.last_name == '' || this.last_name == null){
+                    alert('Last Name is required');
+                }
+                else if(this.password == '' || this.password == null){
+                    alert('First Name is required');
+                }
+                else if(this.first_name == '' || this.first_name == null){
+                    alert('First Name is required');
                 } 
                     
-                let result = await axios.post(import.meta.env.VITE_APIURL + "/teacher", {
+                else{
+                    let result = await axios.post(import.meta.env.VITE_APIURL + "/teacher", {
                     firstname: this.first_name,
                     lastname: this.last_name,
                     email: this.email,
@@ -90,6 +103,7 @@ export default {
                 console.log(result.data)
                 await this.$router.push({name:'teacherlogin'});
 
+                }
             
             }
             catch (err) {

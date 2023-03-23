@@ -74,8 +74,11 @@ export default {
             const token = await localStorage.getItem('token');
             await axios.delete(import.meta.env.VITE_APIURL + '/delete-quiz', { headers: { Authorization: "bearer " + token }, params: { title } })
             await axios.delete(import.meta.env.VITE_APIURL + '/delete-questions', { headers: { Authorization: "bearer " + token }, params: { title } })
-            this.$router.push({ name: 'quiz' });
+            
+            
             swal("Quiz and their questions deleted successfully!");
+            // this.$router.push({ path:'/teacher/dashboard/view' });
+            this.$router.reload();
             console.log('deleted successfully');
         },
         async viewquiz(titleOne) {
