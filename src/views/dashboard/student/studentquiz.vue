@@ -17,7 +17,7 @@
                         height="100px" cover></v-img>
                     <v-card-text variant="outlined">{{ item.description }}
                     </v-card-text>
-                    <v-btn @click="gotoquestion(item.title)" variant="text" color="teal-accent-4">Start</v-btn>
+                    <v-btn @click="gotoquestion(item.title)" :loading="loading" variant="text" color="teal-accent-4">Start</v-btn>
                 </v-card>
             </v-card>
         </v-col>
@@ -38,7 +38,7 @@ export default {
     data() {
         return {
             values: [],
-
+            loading:false,
         }
     },
     props: {
@@ -46,21 +46,27 @@ export default {
     },
     methods: {
         async getquiz() {
-            const token = await localStorage.getItem('token')
-            const quizdetails = await axios.get(import.meta.env.VITE_APIURL + '/get-quiz', { headers: { Authorization: "bearer " + token } });
-            // console.log(quizdetails);
-            // console.log(quizdetails.data.data);
-            this.values = quizdetails.data.data;
-            // value.forEach((item,index )=>{
-            //     const detail1 = item.title;
-            //     const detail2 = item.description;
-            //     console.log(`${item.title} ${item.description}`,index);
-            //     return detail1;
-            // })
-            // return value;
-            console.log(this.values);
+            try{
+                const token = await localStorage.getItem('token')
+                const quizdetails = await axios.get(import.meta.env.VITE_APIURL + '/get-quiz', { headers: { Authorization: "bearer " + token } });
+                // console.log(quizdetails);
+                // console.log(quizdetails.data.data);
+                this.values = quizdetails.data.data;
+                // value.forEach((item,index )=>{
+                //     const detail1 = item.title;
+                //     const detail2 = item.description;
+                //     console.log(`${item.title} ${item.description}`,index);
+                //     return detail1;
+                // })
+                // return value;
+                console.log(this.values);
+            }
+            catch(err){
+                console.log(err);
+            }
         },
         async gotoquestion(titleOne) {
+            this.loading = true;
             this.$router.push({ name: 'studentquestions', query: { title: titleOne } })
         }
     },

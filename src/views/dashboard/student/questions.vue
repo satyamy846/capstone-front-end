@@ -5,6 +5,7 @@
                 <v-card class="mx-auto mt-5" max-width="2000">
                     <v-card-title class="ma-3 text-center">{{ titleOne }}</v-card-title>
                     <v-card-item v-for="(item, index) in qzarray" :key="item._id">
+                        <span>Total Marks: {{ this.qzarray.length }}</span>
                         <hr>
                         <!-- <v-card-sub-title class="ma-3"><h5>Q{{ index+1 }}. {{ item.content }}</h5></v-card-sub-title> -->
                         <p><b>Q{{ index+ 1 }}.</b>
@@ -19,6 +20,7 @@
                         <!-- <input type="radio"> -->
 
                     </v-card-item>
+                    <v-btn class="ma-4"  @click="gotoquiz">Back</v-btn>
                     <v-btn class="ma-4" color="success" @click="submission">Submit</v-btn>
                 </v-card>
             </v-col>
@@ -50,6 +52,9 @@ export default {
     methods: {
         async getquestions() {
             try {
+                
+               
+       
                 const title = this.$route.query.title;
                 console.log(title);
                 const token = await localStorage.getItem('token')
@@ -60,6 +65,8 @@ export default {
                 this.qzarray.forEach((q)=>{
                     q['selectedAns']=''
                 });
+
+                
                 // console.log(questiondetails.data.data[0].answer);
             }
             catch (err) {
@@ -74,6 +81,7 @@ export default {
                 //     alert("Your answer is correct you scored 10 out of 20")
 
                 // }
+
                 let count = 0;
                 this.qzarray.forEach((it)=>{
                     // console.log(it.answer);
@@ -83,11 +91,20 @@ export default {
                     }
 
                 })
+                const len = this.qzarray.length
+                const percentage = ((count)/len) * 100;
                 
-                
-                swal(`You scored ${count}`);
+                swal(`You scored ${count} out of ${len} and percentage: ${percentage}%`);
             }
             catch (err) {
+                console.log(err);
+            }
+        },
+        async gotoquiz(){
+            try{
+                this.$router.push({name:'studentquiz'});
+            }
+            catch(err){
                 console.log(err);
             }
         }
