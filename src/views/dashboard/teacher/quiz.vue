@@ -19,9 +19,9 @@
                             <v-card-text variant="outlined">{{ item.description }}
                             </v-card-text>
                         </v-row>
-                        <v-row align="center" justify="space-around" class="mt-2">
-                            <v-btn left @click="viewquiz(item.title)" variant="text" color="success">View Quiz</v-btn>
-                            <v-btn @click="deletequiz(item.title)" variant="text" color="error">Delete</v-btn>
+                        <v-row justify="space-around" class="mt-2">
+                            <v-btn left @click="viewquiz(item.title)"  :key="item.title" variant="text" color="success">View Quiz</v-btn>
+                            <v-btn @click="deletequiz(item.title)"  :key="item.title" variant="text" color="error">Delete</v-btn>
 
                         </v-row>
                     </v-card>
@@ -41,7 +41,8 @@ export default {
     name: 'quiz',
     data() {
         return {
-            values: []
+            values: [],
+            loading:false,
         }
     },
     methods: {
@@ -71,17 +72,24 @@ export default {
         async deletequiz(title) {
             // this.$router.push({name:'updatequiz',query:{id:id}})
             // const title = this.$router.query.title;
-            const token = await localStorage.getItem('token');
-            await axios.delete(import.meta.env.VITE_APIURL + '/delete-quiz', { headers: { Authorization: "bearer " + token }, params: { title } })
-            await axios.delete(import.meta.env.VITE_APIURL + '/delete-questions', { headers: { Authorization: "bearer " + token }, params: { title } })
-            
-            
-            swal("Quiz and their questions deleted successfully!");
-            // this.$router.push({ path:'/teacher/dashboard/view' });
-            this.$router.reload();
-            console.log('deleted successfully');
+            try{
+                const token = await localStorage.getItem('token');
+                // this.loading = true;
+                await axios.delete(import.meta.env.VITE_APIURL + '/delete-quiz', { headers: { Authorization: "bearer " + token }, params: { title } })
+                await axios.delete(import.meta.env.VITE_APIURL + '/delete-questions', { headers: { Authorization: "bearer " + token }, params: { title } })
+                
+                
+                swal("Quiz and their questions deleted successfully!");
+                // this.$router.push({ path:'/teacher/dashboard/view' });
+                // this.$router.reload();
+                console.log('deleted successfully');
+            }
+            catch(err){
+                console.log(err);
+            }
         },
         async viewquiz(titleOne) {
+            this.loading = true;
             this.$router.push({ name: 'viewquizpage', query: { title: titleOne } })
         },
         async updatequiz(title) {

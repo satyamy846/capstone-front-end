@@ -6,10 +6,12 @@
         <v-card-text class="text-center">
           <v-card-title><b>Student Log in</b></v-card-title>
           <v-text-field ref="email" label="Email" placeholder="Your Email" type="email" required
-            v-model="email"></v-text-field>
+            v-model="email" :rules="[rules.email.required,rules.email.counter,rules.email.Isemail]" ></v-text-field>
+
           <v-text-field ref="email" label="Passward" placeholder="Your Password" type="password" required
-            v-model="password"></v-text-field>
-          <v-btn block color="info" @click="login" class="mb-4">Log In</v-btn>
+            v-model="password" :rules="[rules.password.required,rules.password.Ispassword,rules.password.minimum]"></v-text-field>
+
+          <v-btn block color="info" @click="login" :loading="loading" class="mb-4">Log In</v-btn>
           <span>Haven't Signed Up?</span>
           <router-link class="ml-1" style="text-decoration: none;" :to="{ name: 'studentsignup' }">
             Sign Up</router-link>
@@ -35,43 +37,58 @@ export default {
       email: "",
       password: "",
       result:'',
+      loading:false,
+      rules:{
+        email:{
+            required: value => !!value || 'Email is Required.',
+            counter: value => value.length <= 20 || 'Max 20 characters',
+            Isemail: value => {
+            const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+            return pattern.test(value) || 'Invalid e-mail.'
+            },
+        },
+        password:{
+            required: value =>!!value || 'Password is Required.',
+            minimum: value => value.length >=4 && value.length <=16 || ' Password should contains min 4 or max 16',
+            Ispassword: value =>{
+              const password = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/
+              return password.test(value) || 'Invalid Password.'
+            } 
+        }
+      }
     };
   },
   methods: {
     async login() {
       // console.log(this.email, this.password);
       try {
+        
+        
         if (this.email && this.password) {
           if (this.password.length >= 4 && this.password.length <= 12) {
-
-          // this.result.forEach((element)=>{
-          //   if(element.email ==this.email){
-          //     alert("User doesn't exists please register yourself");
-          //     // console.log("not found");
-          //     return;
-          //   }
-          // })
             const user = {
               email: this.email,
               password: this.password,
             };
+            //start the loader
+            this.loading = true;
             const result = await axios.post(
               import.meta.env.VITE_APIURL + "/student/login",
               user
             );
+            // this.loading = false;
+            
             swal("You are logged in", "success");
             console.log(result);
+            
             // console.log(result.data.user.contact);
             
             localStorage.setItem('token', result.data.token);
-            // localStorage.setItem('user',JSON.stringify(result.data.user));
             localStorage.setItem('userfirstname', result.data.user.firstname);
             localStorage.setItem('userlastname', result.data.user.lastname);
             localStorage.setItem('useremail', result.data.user.email);
             localStorage.setItem('usercontact', result.data.user.contact);
             localStorage.setItem('Isstudent',result.data.user.Isstudent);
-            // localStorage.setItem('student_flag', true);
-            // localStorage.setItem('teacher_flag', false);
             const  key = await localStorage.getItem('Isstudent')
             console.log("login ",key);
             
@@ -80,6 +97,7 @@ export default {
 
          
         }
+        this.loading = false;
         // else {
         //     console.log("Pasword or email is incorrect");
         //   }
