@@ -139,7 +139,7 @@ const router = createRouter({
               }
             },
             {
-              path: 'updatequestions',
+              path: 'updatequestions/:id',
               name: 'updatequestions',
               component: () => import('../views/dashboard/teacher/updatequestions.vue'),
               meta:{
@@ -147,7 +147,7 @@ const router = createRouter({
               }
             },
             {
-              path: 'updatequiz',
+              path: '/updatequiz/:id',
               name: 'updatequiz',
               component: () => import('../views/dashboard/teacher/updatequiz.vue'),
               meta:{
@@ -169,7 +169,8 @@ const router = createRouter({
               meta:{
                 teachergaurd:true
               }
-            }
+            },
+            
 
           ]
         },
