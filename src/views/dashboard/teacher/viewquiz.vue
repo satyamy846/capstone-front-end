@@ -33,12 +33,13 @@
                             <v-radio :label="` ${item.option4}`" value="radio-4"></v-radio>
                         </v-radio-group>
                         <!-- <input type="radio"> -->
-
+                        <v-btn class="ma-4" color="upload" @click="updatequestion(item._id,item.title)">Update</v-btn>
+                        <v-btn class="ma-4" color="error" @click="deletequestion(item._id)">Delete</v-btn>
                     </v-card-item>
                     <v-card-actions>
                         <v-btn color="primary" :to="{path:'/teacher/dashboard/quizes'}">Go Back</v-btn>
-                        <v-spacer></v-spacer>
-                        <!-- <v-btn class="ma-4" color="success" @click="submission">Submit</v-btn> -->
+                        <!-- <v-spacer></v-spacer> -->
+                        
                     </v-card-actions>
                     
                    
@@ -69,12 +70,15 @@ export default {
         async getquestions() {
             try {
                 const title = this.$route.query.title;
+                // console.log(this.$route)
                 // console.log(title);
                 const token = await localStorage.getItem('token')
-                const questiondetails = await axios.get(import.meta.env.VITE_APIURL + '/get-questions', { headers: { Authorization: "bearer " + token }, params: { title } })
+                const questiondetails = await axios.get(import.meta.env.VITE_APIURL + '/get-questions', 
+                { headers: { Authorization: "bearer " + token }, params: { title } })
                 // console.log(questiondetails);
                 this.qzarray = questiondetails.data.data;
                 this.titleOne = title;
+                console.log(questiondetails);
             }
             catch (err) {
                 console.log(err);
@@ -84,20 +88,20 @@ export default {
         async goback(){
             this.$router.push({name:'quiz'})
         },
-        async updatequestion(title){
-            this.$router.push({name:'updatequestions',query:{title:title}})
+        async updatequestion(id,titleOne){
+            this.$router.push({name:'updatequestions',query:{title:titleOne},params:{id:id}})
         },
-        async submission() {
-            try {
-                //we have to implement the logic like this
-                // if(radio == answer){
-                //     alert("Your answer is correct you scored 10 out of 20")
-
-                // }
-
-                swal("Your Submission recorded");
+        async deletequestion(id){
+            try{
+                const token = await localStorage.getItem('token');
+                console.log(id);
+                const data = await axios.delete(import.meta.env.VITE_APIURL + `/delete-question/${id}`,
+                {headers:{Authorization: "bearer " + token}});
+                alert("Question Deleted");
+                this.$router.go();
+                // swal("Question deleted");
             }
-            catch (err) {
+            catch(err){
                 console.log(err);
             }
         },

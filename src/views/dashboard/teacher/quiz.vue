@@ -3,7 +3,7 @@
         <v-row>
             <v-col>
                 <v-card color="#FFEBEE">
-                    <v-card class="d-inline-block ma-6" v-for="item in values" :key="item._id" height="300px" width="240px">
+                    <v-card class="d-inline-block ma-6" v-for="item in values" :key="item._id" height="350px" width="260px">
                         <v-card-item>
                             <v-card-title>
                                 {{ item.title }}
@@ -19,10 +19,11 @@
                             <v-card-text variant="outlined">{{ item.description }}
                             </v-card-text>
                         </v-row>
-                        <v-row justify="space-around" class="mt-2">
+                        <v-row justify="space-evenly" class="mt-2">
                             <v-btn left @click="viewquiz(item.title)"  :key="item.title" variant="text" color="success">View Quiz</v-btn>
-                            <v-btn @click="deletequiz(item.title)"  :key="item.title" variant="text" color="error">Delete</v-btn>
-
+                            <v-btn @click="deletequiz(item.title,item._id)"  :key="item.title" variant="text" color="error">Delete</v-btn>
+                            <v-btn @click="updatequiz(item._id)" :key="item._id" class="mt-2">Update</v-btn>
+                            <!-- <router-link :to="{name:'updatequiz' , params:{id:item._id}}"> Update</router-link> -->
                         </v-row>
                     </v-card>
                 </v-card>
@@ -49,6 +50,10 @@ export default {
         async getquiz() {
             const token = await localStorage.getItem('token');
             const quizdetails = await axios.get( import.meta.env.VITE_APIURL + '/get-quiz', { headers: { Authorization: "bearer " + token } });
+            const title = quizdetails.data.data.title;
+            // const questiondetails = await axios.get(import.meta.env.VITE_APIURL + `/get-question`, 
+            // {headers:{ Authorization: "bearer " + token}}, {query:{title}})
+            // console.log("questions =>" + questiondetails)
             // console.log(quizdetails);
             // console.log(quizdetails.data.data);
             console.log(quizdetails);
@@ -64,25 +69,16 @@ export default {
             // localStorage.setItem('quizId', quizdetails.data.data[0]._id);
             
         },
-        // async updatequestions(titleOne,id) {
-        //     //update the questions;
-
-        //     this.$router.push({ name: 'updatequiz', query: { title: titleOne } })
-        // },
-        async deletequiz(title) {
+        async deletequiz(title,id) {
             // this.$router.push({name:'updatequiz',query:{id:id}})
             // const title = this.$router.query.title;
             try{
                 const token = await localStorage.getItem('token');
-                // this.loading = true;
-                await axios.delete(import.meta.env.VITE_APIURL + '/delete-quiz', { headers: { Authorization: "bearer " + token }, params: { title } })
-                await axios.delete(import.meta.env.VITE_APIURL + '/delete-questions', { headers: { Authorization: "bearer " + token }, params: { title } })
                 
-                
-                swal("Quiz and their questions deleted successfully!");
-                // this.$router.push({ path:'/teacher/dashboard/view' });
-                // this.$router.reload();
-                console.log('deleted successfully');
+                await axios.delete(import.meta.env.VITE_APIURL + `/delete-quiz/${id}`, { headers: { Authorization: "bearer " + token } })
+                await axios.delete(import.meta.env.VITE_APIURL + `/delete-questions`, { headers: { Authorization: "bearer " + token }, params: { title } })
+                alert("Quiz and their questions deleted");
+                this.$router.go();
             }
             catch(err){
                 console.log(err);
@@ -92,8 +88,9 @@ export default {
             this.loading = true;
             this.$router.push({ name: 'viewquizpage', query: { title: titleOne } })
         },
-        async updatequiz(title) {
-            this.$router.push({ name: 'updatequiz', query: { title: title } })
+        async updatequiz(id) {
+            console.log(id);
+            this.$router.push({ path:`/updatequiz/${id}`, params: { id: id } })
         }
     },
     mounted() {

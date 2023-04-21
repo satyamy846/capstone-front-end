@@ -76,7 +76,7 @@ export default {
                     }, { headers: { Authorization: "bearer " + token } },);
                     //headers should be written after the data we want to send if we write first then this token will be send as a data
                     console.log(details);
-                    swal("Questions Added Successfully", "success");
+                    swal("Questions Added Successfully");
                 }
                 this.loading = false;
             }

@@ -17,6 +17,15 @@
             Sign Up</router-link>
 
         </v-card-text>
+        <div class="demo-container">
+          <div class="demo1">
+          <span>Test Login ID - <b>test@gmail.com</b></span>
+        </div>
+        <div class="demo2">
+          <span>Test Login Password- <b>Test12</b></span>
+          
+        </div>
+        </div>
       </v-card>
     </v-col>
   </v-row>
@@ -70,6 +79,10 @@ export default {
               email: this.email,
               password: this.password,
             };
+
+            // if(user.email == existinguser.email){
+            //   alert("User not found")
+            // }
             //start the loader
             this.loading = true;
             const result = await axios.post(
@@ -103,8 +116,9 @@ export default {
         //   }
       }
       catch (err) {
-        alert("User not found");
+        // alert("User not found");
         console.log("Please Enter valid data \n" + err);
+        this.loading = false;
       }
     },
     // signup(){
@@ -128,7 +142,14 @@ export default {
 
 
 <style>
-/* body {
-  background-color: rgb(223, 255, 245);
-} */
+
+.demo1{
+  display: flex;
+  justify-content: center;
+}
+.demo2{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
 </style>

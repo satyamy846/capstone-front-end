@@ -5,12 +5,10 @@
                 <v-card class="mx-auto" max-width="500" >
 
                     <table class="table">
-                        <thead class="image">
-                            <div>
-                                <img src="../../../assets/user.png" alt="profile-img">
-                            </div>
-
-                        </thead>
+                        <div class="image">
+                            <img src="../../../assets/user.png" alt="profile-img">
+                        </div>
+                       
                         <tbody>
                             <tr>
                                 <th scope="row">First Name: </th>
@@ -75,9 +73,19 @@ export default {
 
 
 <style>
-.image img {
+body{
+    box-sizing: border-box;
+}
+
+.image{
+    display: flex;
+    justify-content: center;
+
+    width: 100%;
+}
+img{
     height: 100px;
     width: 100px;
-
 }
+
 </style>
