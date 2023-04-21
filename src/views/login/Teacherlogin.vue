@@ -21,8 +21,19 @@
           <span>Haven't Registered?</span>
           <router-link class="ml-1" style="text-decoration: none;" :to="{ name: 'teachersignup' }">
             Sign Up</router-link>
-
+          
         </v-card-text>
+        <div class="demo-container">
+          <div class="demo1">
+          <span>Test Login ID - <b>test@gmail.com</b></span>
+        </div>
+        <div class="demo2">
+          <span>Test Login Password- <b>Test12</b></span>
+          
+        </div>
+        </div>
+        
+        
       </v-card>
     </v-col>
   </v-row>
@@ -112,3 +123,14 @@ export default {
 </script>
 
 
+<style>
+.demo1{
+  display: flex;
+  justify-content: center;
+}
+.demo2{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+</style>

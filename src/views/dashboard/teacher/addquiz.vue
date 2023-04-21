@@ -49,22 +49,26 @@ export default {
                 //fetch the token from the localStorage
                 const token = localStorage.getItem('token');
                 
+                // this.loading = true;
                 if(this.title && this.description){
                     //start the loader
-                    this.loading = true;
                     const details = await axios.post(import.meta.env.VITE_APIURL + "/addquiz", {
                     title: this.title,
                     description: this.description,
                     }, { headers: { Authorization: "bearer " + token } },);
                     //headers should be written after the data we want to send if we write first then this token will be send as a data
                     console.log(details);
-                    swal("Quiz Successfully Added", "success");
+                    alert("Quiz Successfully Added");
+                    
                 }
-                this.loading = false;
+                this.title = ''
+                this.description = ''
+                // this.loading = false;
             }
             catch (err) {
                 console.log(err);
             }
+            
         }
     }
 }

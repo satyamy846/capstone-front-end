@@ -20,7 +20,7 @@
                             v-model="answer"></v-text-field>
                     </v-card-content>
                     <v-btn @click="goback(title)" color="white" class="ml-4">Go back</v-btn>
-                    <v-btn @click="updatequestions" color="blue-grey" class="ml-4">Update</v-btn>
+                    <v-btn @click="updatequestions(title)" color="blue-grey" class="ml-4">Update</v-btn>
                 </v-card-item>
             </v-card>
             </div>
@@ -69,24 +69,24 @@ export default {
             }
 
         },
-        async updatequestions() {
+        async updatequestions(titleOne) {
             //update the questions
             try {
                 const id = this.$route.params.id;
                 // console.log(title);
-                const token = await localStorage.getItem('token')
+                const token = await localStorage.getItem('token');
+                
                 const updated = await axios.put(import.meta.env.VITE_APIURL + `/update-questions/${id}`,{
-                    content:this.content,
-                    option1:this.option1,
-                    option1:this.option2,
-                    option1:this.option3,
-                    option1:this.option4,
-                    answer:this.answer,
+                    content: this.content,
+                    option1: this.option1,
+                    option2: this.option2,
+                    option3: this.option3,
+                    option4: this.option4,
+                    answer: this.answer,
                 } ,{ headers: { Authorization: "bearer " + token } })
-                // console.log(questiondetails);
-                // this.questions = questiondetails.data.data;
                 console.log(updated);
-                swal("Question Updated");
+                alert("Question is Updated");
+                this.$router.push({name:'viewquizpage', query:{title:titleOne}})
             }
             catch (err) {
                 console.log(err);

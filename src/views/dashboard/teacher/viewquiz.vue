@@ -78,6 +78,7 @@ export default {
                 // console.log(questiondetails);
                 this.qzarray = questiondetails.data.data;
                 this.titleOne = title;
+                console.log(questiondetails);
             }
             catch (err) {
                 console.log(err);
@@ -90,14 +91,15 @@ export default {
         async updatequestion(id,titleOne){
             this.$router.push({name:'updatequestions',query:{title:titleOne},params:{id:id}})
         },
-        async deletequestion(){
+        async deletequestion(id){
             try{
-                const id = this.$route.params.id;
                 const token = await localStorage.getItem('token');
+                console.log(id);
                 const data = await axios.delete(import.meta.env.VITE_APIURL + `/delete-question/${id}`,
                 {headers:{Authorization: "bearer " + token}});
-                console.log(data);
-                swal("Question deleted");
+                alert("Question Deleted");
+                this.$router.go();
+                // swal("Question deleted");
             }
             catch(err){
                 console.log(err);

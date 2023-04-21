@@ -62,7 +62,8 @@ export default {
                     description: this.description,
                 }, { headers: { Authorization: "bearer " + token } });
                 console.log(details);
-                swal("Quiz is updated")
+                alert("Quiz is updated");
+                this.$router.push({name:'quiz'});
 
             }
             catch (err) {
