@@ -33,7 +33,7 @@
                             <v-radio :label="` ${item.option4}`" value="radio-4"></v-radio>
                         </v-radio-group>
                         <!-- <input type="radio"> -->
-                        <v-btn class="ma-4" color="upload" @click="updatequestion(item._id,item.title)">Update</v-btn>
+                        <v-btn class="ma-4" color="upload" @click="updatequestion(item._id)">Update</v-btn>
                         <v-btn class="ma-4" color="error" @click="deletequestion(item._id)">Delete</v-btn>
                     </v-card-item>
                     <v-card-actions>
@@ -89,7 +89,7 @@ export default {
             this.$router.push({name:'quiz'})
         },
         async updatequestion(id,titleOne){
-            this.$router.push({name:'updatequestions',query:{title:titleOne},params:{id:id}})
+            this.$router.push({name:'updatequestions',params:{id:id}})
         },
         async deletequestion(id){
             try{

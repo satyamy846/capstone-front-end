@@ -4,7 +4,7 @@
                 <v-card class="d-inline-block ma-5" width="50rem" height="38rem">
                 <v-card-item >
                     <v-card-title class="mt-3 text-center">{{ title }}</v-card-title>
-                    <v-card-content>
+                    <v-card-content >
                         
                         <v-text-field label="Question Name" placeholder="Title" type="text" required
                             v-model="content"></v-text-field>
@@ -51,11 +51,13 @@ export default {
     methods: {
         async getquestions() {
             try {
-                const title = this.$route.query.title;
-                console.log(title);
-                const token = await localStorage.getItem('token')
-                const questiondetails = await axios.get(import.meta.env.VITE_APIURL + '/get-questions', { headers: { Authorization: "bearer " + token }, params: { title } })
-                console.log(questiondetails);
+                // const title = this.$route.query.title;
+                const id = this.$route.params.id;
+                // console.log(id);
+                // console.log(title);
+                const token = await localStorage.getItem('token');
+                const questiondetails = await axios.get(import.meta.env.VITE_APIURL + `/get-questionById/${id}`, { headers: { Authorization: "bearer " + token } })
+                // console.log(questiondetails);
                 this.title =  questiondetails.data.data[0].title;
                 this.content = questiondetails.data.data[0].content;
                 this.option1 = questiondetails.data.data[0].option1;
@@ -63,6 +65,8 @@ export default {
                 this.option3 = questiondetails.data.data[0].option3;
                 this.option4 = questiondetails.data.data[0].option4;
                 this.answer = questiondetails.data.data[0].answer;
+                // this.questions = questiondetails.data.data.content;
+                // console.log(questiondetails.data.data[0].content);
             }
             catch (err) {
                 console.log(err);
